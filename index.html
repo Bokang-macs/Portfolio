@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotondwa Machete | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header>
+    <h1>Rotondwa Machete</h1>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Hello, I'm Rotondwa!</h2>
+    <p>Student & Aspiring Developer | Passionate about Web Development and Programming</p>
+    <img src="Images\IMG .jpg" alt="Rotondwa Machete" width="200">
+    <p class="caption">📸 My professional profile</p>
+    <!-- Introduction video placeholder -->
+  
+  </section>
+
+  <!-- About Me / Personal Summary -->
+  <section class="intro">
+    <h2>About Me</h2>
+    <p>I am <strong>Rotondwa Machete</strong>, a passionate student learning web development and programming. I enjoy creating digital solutions that are both functional and visually appealing. I am always eager to learn new technologies and challenge myself with exciting projects.</p>
+    <p>My goal is to become a professional developer and use my skills to solve real-world problems and help businesses and individuals grow online.</p>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills-section">
+    <h2>My Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <h3>HTML</h3>
+        <div class="progress"><div class="progress-bar" style="width:90%;">90%</div></div>
+      </div>
+      <div class="skill">
+        <h3>CSS</h3>
+        <div class="progress"><div class="progress-bar" style="width:85%;">85%</div></div>
+      </div>
+      <div class="skill">
+        <h3>Java</h3>
+        <div class="progress"><div class="progress-bar" style="width:70%;">70%</div></div>
+      </div>
+      <div class="skill">
+        <h3>C++</h3>
+        <div class="progress"><div class="progress-bar" style="width:65%;">65%</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hobbies & Interests -->
+  <section class="hobbies">
+    <h2>Hobbies & Interests</h2>
+    <ul>
+      <li>Programming and coding practice</li>
+      <li>Multimedia design (video, audio, graphics)</li>
+      <li>Learning new technologies</li>
+      <li>Exploring travel and culture</li>
+      <li>Gaming and problem-solving</li>
+    </ul>
+  </section>
+
+  <!-- Achievements / Highlights -->
+  <section class="achievements">
+    <h2>Achievements</h2>
+    <ol>
+      <li>Completed personal portfolio website project using HTML & CSS</li>
+      <li>Built a calculator app using Java</li>
+      <li>Developed a student management system using C++</li>
+      <li>Created multimedia projects for school and community events</li>
+      <li>Active in learning and applying new programming concepts independently</li>
+    </ol>
+  </section>
+
+  <!-- Testimonials / Peer Feedback -->
+  <section class="testimonials">
+    <h2>Feedback from Peers</h2>
+    <blockquote>
+      "Rotondwa is creative, hardworking, and dedicated. His coding projects are impressive for his experience level."
+      <cite>-Classmate / Mentor</cite>
+    </blockquote>
+    <blockquote>
+      "Very reliable, fast learner, and passionate about technology."
+      <cite>-Project Team Member</cite>
+    </blockquote>
+  </section>
+
+  <!-- Contact Teaser -->
+  <section class="contact-teaser">
+    <h2>Get in Touch</h2>
+    <p>If you want to collaborate, learn from me, or hire me for a project, feel free to reach out by visiting the <a href="contact.html">Contact page</a>.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Rotondwa Machete | All Rights Reserved</p>
+  </footer>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navbar = document.querySelector('nav');
+
+    hamburger.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+    });
+
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navbar.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Header / Navigation */
+header {
+  background-color: #004466;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: slideDown 1s ease forwards;
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+header h1 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+
+nav a:hover, nav a.active {
+  color: #ffcc00;
+  transform: scale(1.1);
+}
+
+/* Sections */
+section {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #004466;
+  text-align: center;
+  animation: fadeIn 1s forwards;
+}
+
+section h3 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: #006699;
+  animation: fadeIn 1s forwards;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 15px;
+  animation: fadeIn 1.2s forwards;
+}
+
+/* Lists */
+ul, ol {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  animation: fadeInUp 1.2s forwards;
+}
+
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #004466;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Cards */
+.project-card, .service {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.project-card:hover, .service:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Images & Videos hover */
+img, video {
+  max-width: 100%;
+  display: block;
+  margin: 15px auto;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+img:hover, video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Captions */
+.caption {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-top: 5px;
+  animation: fadeIn 1.5s forwards;
+}
+
+/* Buttons */
+button {
+  background-color: #004466;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #006699;
+  transform: scale(1.05);
+}
+
+/* Testimonials */
+.testimonials blockquote {
+  background-color: #e6f2ff;
+  border-left: 5px solid #004466;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  font-style: italic;
+  animation: fadeInUp 1.3s forwards;
+}
+
+.testimonials cite {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  color: #004466;
+  font-style: normal;
+}
+
+/* Call to Action */
+.cta {
+  background-color: #004466;
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+  animation: fadeInUp 1.4s forwards;
+}
+
+.cta a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.cta a:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  background-color: #004466;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+/* Responsive Grid for Projects & Services */
+.projects, .services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Mobile / Tablet Responsive */
+@media (max-width: 1024px) {
+  nav a {
+    margin: 0 10px;
+    font-size: 0.95rem;
+  }
+
+  section {
+    padding: 30px 15px;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav a {
+    margin: 5px 0;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  section h3 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  section h2 {
+    font-size: 1.3rem;
+  }
+
+  section h3 {
+    font-size: 1.1rem;
+  }
+
+  .projects, .services {
+    grid-template-columns: 1fr;
+  }
+
+  p, li {
+    font-size: 0.95rem;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+/* Navigation container */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Hamburger menu hidden by default */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Desktop / tablet nav links */
+#navbar {
+  display: flex;
+}
+
+#navbar a {
+  margin: 0 15px;
+}
+
+/* Mobile / Tablet */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  #navbar {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #004466;
+    flex-direction: column;
+    width: 200px;
+    display: none;
+    border-radius: 0 0 10px 10px;
+  }
+
+  #navbar a {
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid #006699;
+  }
+}
+
+/* Show menu when active */
+#navbar.active {
+  display: flex;
+}
+
+/* Animation for links */
+#navbar a {
+  transition: background 0.3s, transform 0.3s;
+}
+
+#navbar a:hover {
+  background-color: #006699;
+  transform: scale(1.05);
+}
+
