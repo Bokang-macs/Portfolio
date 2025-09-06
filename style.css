@@ -24,6 +24,24 @@ header {
   z-index: 1000;
   animation: slideDown 1s ease forwards;
 }
+/* Marquee container */
+.marquee-container {
+  background-color: #004466;       /* dark blue header */
+  padding: 8px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Marquee text */
+.marquee-container marquee {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;                  /* changed to white */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
 
 @keyframes slideDown {
   0% { transform: translateY(-100%); opacity: 0; }
@@ -47,10 +65,6 @@ nav a:hover, nav a.active {
   color: #ffcc00;
   transform: scale(1.1);
 }
-.Intro {
-  text-align: center;
-}
-
 
 /* Sections */
 section {
@@ -362,26 +376,6 @@ html {
     border-bottom: 1px solid #006699;
   }
 }
-/* Marquee container */
-.marquee-container {
-  background-color: #004466;       /* dark blue header */
-  padding: 8px 0;
-  text-align: center;
-  overflow: hidden;
-}
-
-/* Marquee text */
-.marquee-container marquee {
-  font-family: 'Arial', sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #ffffff;                  /* changed to white */
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  line-height: 1.2;
-}
-
-
 
 /* Show menu when active */
 #navbar.active {
@@ -397,33 +391,4 @@ html {
   background-color: #006699;
   transform: scale(1.05);
 }
-@media (max-width: 768px) {
-  /* Shrink navbar container */
-  .nav-container {
-    padding: 0 10px;
-  }
-
-  /* Smaller logo/title */
-  header h1 {
-    font-size: 1.2rem;
-  }
-
-  /* Hamburger stays same */
-  .hamburger {
-    font-size: 1.5rem;
-  }
-
-  /* Navbar dropdown */
-  #navbar {
-    width: 150px;          /* smaller width */
-    top: 60px;             /* move a bit up */
-  }
-
-  #navbar a {
-    padding: 10px;         /* less padding per link */
-    font-size: 0.9rem;     /* smaller font */
-  }
-}
-
-
 
