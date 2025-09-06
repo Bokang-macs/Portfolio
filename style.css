@@ -373,4 +373,33 @@ html {
   background-color: #006699;
   transform: scale(1.05);
 }
+@media (max-width: 768px) {
+  /* Shrink navbar container */
+  .nav-container {
+    padding: 0 10px;
+  }
+
+  /* Smaller logo/title */
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  /* Hamburger stays same */
+  .hamburger {
+    font-size: 1.5rem;
+  }
+
+  /* Navbar dropdown */
+  #navbar {
+    width: 150px;          /* smaller width */
+    top: 60px;             /* move a bit up */
+  }
+
+  #navbar a {
+    padding: 10px;         /* less padding per link */
+    font-size: 0.9rem;     /* smaller font */
+  }
+}
+
+
 
