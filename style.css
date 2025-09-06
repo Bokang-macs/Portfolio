@@ -360,21 +360,22 @@ html {
 }
 /* Marquee container */
 .marquee-container {
-  background-color: #004466;   /* same as header */
-  color: #fff;
-  padding: 10px 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-bottom: 3px solid #ffcc00; /* adds accent line */
+  background: linear-gradient(90deg, #004466, #006699);
+  padding: 12px 0;
+  overflow: hidden;
+  border-top: 3px solid #ffcc00;
+  border-bottom: 3px solid #ffcc00;
+  text-align: center;
 }
 
-/* Marquee itself */
+/* Marquee text */
 .marquee-container marquee {
-  font-family: 'Arial', sans-serif;
-  font-size: 1.1rem;
-  color: #ffcc00;  /* yellow text for contrast */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
 }
 
 
