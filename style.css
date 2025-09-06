@@ -360,23 +360,22 @@ html {
 }
 /* Marquee container */
 .marquee-container {
-  background: linear-gradient(90deg, #004466, #006699);
-  padding: 12px 0;
-  overflow: hidden;
-  border-top: 3px solid #ffcc00;
-  border-bottom: 3px solid #ffcc00;
+  background-color: #004466;   /* match header */
+  padding: 10px 0;
+  border-bottom: 2px solid #ffcc00;
   text-align: center;
 }
 
 /* Marquee text */
 .marquee-container marquee {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  font-size: 1.3rem;
+  font-family: 'Arial', sans-serif;
+  font-size: 1.1rem;
   font-weight: bold;
-  color: #fff;
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  color: #ffcc00;   /* yellow accent */
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
+
 
 
 /* Show menu when active */
