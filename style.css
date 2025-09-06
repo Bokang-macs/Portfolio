@@ -208,6 +208,9 @@ button:hover {
   font-style: italic;
   animation: fadeInUp 1.3s forwards;
 }
+.Intro{
+  text-align:center;
+}
 
 .testimonials cite {
   display: block;
