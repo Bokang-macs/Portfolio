@@ -362,7 +362,6 @@ html {
 .marquee-container {
   background-color: #004466;       /* dark blue header */
   padding: 8px 0;
-  border-bottom: 2px solid #ffcc00; /* yellow accent */
   text-align: center;
   overflow: hidden;
 }
