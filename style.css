@@ -360,20 +360,22 @@ html {
 }
 /* Marquee container */
 .marquee-container {
-  background-color: #004466;   /* match header */
-  padding: 10px 0;
-  border-bottom: 2px solid #ffcc00;
+  background-color: #004466;       /* dark blue header */
+  padding: 8px 0;
+  border-bottom: 2px solid #ffcc00; /* yellow accent */
   text-align: center;
+  overflow: hidden;
 }
 
 /* Marquee text */
 .marquee-container marquee {
   font-family: 'Arial', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
-  color: #ffcc00;   /* yellow accent */
-  letter-spacing: 2px;
+  color: #ffffff;                  /* changed to white */
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 
