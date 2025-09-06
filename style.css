@@ -358,6 +358,25 @@ html {
     border-bottom: 1px solid #006699;
   }
 }
+/* Marquee container */
+.marquee-container {
+  background-color: #004466;   /* same as header */
+  color: #fff;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #ffcc00; /* adds accent line */
+}
+
+/* Marquee itself */
+.marquee-container marquee {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.1rem;
+  color: #ffcc00;  /* yellow text for contrast */
+}
+
 
 /* Show menu when active */
 #navbar.active {
