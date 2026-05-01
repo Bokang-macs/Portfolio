@@ -1,131 +1,134 @@
-/* --- Titanium & Midnight Palette --- */
+/* --- Color Variables: Modern Quartz & Slate --- */
 :root {
-  --bg-primary: #0f1115;     /* Midnight Black */
-  --bg-secondary: #1a1d23;   /* Graphite Gray */
-  --accent-color: #3b82f6;   /* Precision Blue */
-  --accent-muted: #1e293b;   /* Slate Blue */
-  --text-bold: #ffffff;      /* Pure White */
-  --text-body: #94a3b8;      /* Muted Slate */
-  --border-ui: #2d333b;      /* Tech Gray Border */
-  --radius-sm: 4px;          /* Sharp, professional corners */
+  --bg-deep: #0b0d11;       /* Deep Slate */
+  --bg-surface: #151921;    /* Quartz Surface */
+  --accent-primary: #6366f1; /* Indigo Action */
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --text-headers: #ffffff;   /* Pure White */
+  --text-body: #9ca3af;      /* Cool Gray */
+  --border-subtle: #242933;  /* Precision Border */
+  --radius-pro: 6px;         /* Standard Enterprise Radius */
 }
 
-/* --- Core Reset --- */
+/* --- Global Reset --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
 }
 
 body {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-deep);
   color: var(--text-body);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* --- Header & Navigation --- */
+/* --- Header & Desktop Navigation --- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 8%;
-  background: rgba(15, 17, 21, 0.95);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  padding: 1rem 8%;
+  background: rgba(11, 13, 17, 0.8);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid var(--border-ui);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 header h1 {
   font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text-bold);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-headers);
+  letter-spacing: -0.5px;
 }
 
 /* Desktop Links */
 .nav a {
   color: var(--text-body);
   text-decoration: none;
-  margin-left: 28px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: 0.2s;
+  margin-left: 30px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .nav a:hover {
-  color: var(--accent-color);
+  color: var(--accent-primary);
 }
 
-/* --- Professional App-Style Toggle --- */
+/* --- Professional Mobile Toggle --- */
 .menu-toggle {
   display: none;
-  width: 42px;
-  height: 42px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-ui);
-  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pro);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1001;
+  transition: all 0.2s ease;
 }
 
 .menu-toggle span {
   display: block;
   width: 18px;
-  height: 1.5px;
-  background: var(--text-bold);
-  margin: 2.5px 0;
+  height: 2px;
+  background: var(--text-body);
+  margin: 2px 0;
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Professional Side Drawer (Mobile) --- */
+/* --- Mobile Navigation: Side Drawer --- */
 @media (max-width: 768px) {
   .menu-toggle { display: flex; }
 
   .nav {
     position: fixed;
     top: 0;
-    right: -280px; /* Hidden off-screen */
-    width: 260px;   /* Side-drawer width */
+    right: -280px; 
+    width: 260px;
     height: 100vh;
-    background: var(--bg-secondary);
+    background: var(--bg-surface);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-left: 30px;
-    border-left: 1px solid var(--border-ui);
-    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+    justify-content: flex-start;
+    padding: 80px 40px;
+    border-left: 1px solid var(--border-subtle);
+    box-shadow: -15px 0 30px rgba(0,0,0,0.4);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* When JS adds .active class, slide it into view */
+  /* Drawer Activation */
   .nav.active {
     transform: translateX(-280px);
   }
 
   .nav a {
     font-size: 1.1rem;
-    margin: 1.2rem 0;
-    color: var(--text-bold);
-    font-weight: 500;
+    margin: 1rem 0;
+    color: var(--text-headers);
+    font-weight: 600;
   }
 
-  /* Animation for Toggle */
+  /* Hamburger to X Animation */
   .menu-toggle.active {
-    border-color: var(--accent-color);
+    background: var(--accent-glow);
+    border-color: var(--accent-primary);
   }
 
-  .menu-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .menu-toggle.active span { background: var(--accent-primary); }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .menu-toggle.active span:nth-child(2) { opacity: 0; }
-  .menu-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 }
 
 /* --- Content Sections --- */
@@ -136,103 +139,80 @@ section {
 }
 
 h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-bold);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-headers);
   margin-bottom: 2.5rem;
-  display: flex;
-  align-items: center;
+  letter-spacing: -0.02em;
 }
 
-h2::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background: var(--accent-color);
-  margin-right: 15px;
-  border-radius: 2px;
-}
-
-/* Hero Section */
-.hero {
-  text-align: left;
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  color: var(--text-bold);
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.hero img {
-  border: 1px solid var(--border-ui);
-  border-radius: var(--radius-sm);
-  filter: grayscale(100%);
-  transition: 0.5s;
-}
-
-.hero img:hover {
-  filter: grayscale(0%);
-  border-color: var(--accent-color);
-}
-
-/* Cards & Grid */
+/* Professional Card Components */
 .skills, .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .skill, .project-card, .service {
-  background: var(--bg-secondary);
-  padding: 2rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-ui);
-  transition: 0.3s;
+  background: var(--bg-surface);
+  padding: 2.5rem;
+  border-radius: var(--radius-pro);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill:hover, .project-card:hover {
-  border-color: var(--accent-color);
-  background: var(--accent-muted);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px var(--accent-glow);
   transform: translateY(-4px);
 }
 
-/* Professional Data Tables */
+/* Refined Data Tables */
 table {
   width: 100%;
   border-collapse: collapse;
+  background: var(--bg-surface);
+  border-radius: var(--radius-pro);
+  overflow: hidden;
 }
 
 th {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-headers);
   text-align: left;
-  padding: 1rem;
+  padding: 1.2rem 1.5rem;
   font-size: 0.75rem;
   text-transform: uppercase;
-  color: var(--text-bold);
-  border-bottom: 2px solid var(--border-ui);
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 td {
-  padding: 1rem;
-  border-bottom: 1px solid var(--border-ui);
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
 }
 
-tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
-}
+tr:last-child td { border-bottom: none; }
 
-/* Footer */
+/* Footer Styling */
 footer {
   text-align: center;
-  padding: 4rem 8%;
-  border-top: 1px solid var(--border-ui);
+  padding: 5rem 8%;
+  border-top: 1px solid var(--border-subtle);
   color: var(--text-body);
   font-size: 0.8rem;
+  background: var(--bg-deep);
 }
 
-/* Selection */
+/* Link Aesthetics */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
 ::selection {
-  background: var(--accent-color);
+  background: var(--accent-primary);
   color: white;
 }
