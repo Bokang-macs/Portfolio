@@ -1,13 +1,13 @@
-/* --- The Final Palette: Cyber-Onyx & Crimson --- */
+/* --- Titanium & Midnight Palette --- */
 :root {
-  --bg-deep: #050505;        /* Pure Onyx */
-  --bg-surface: #111111;     /* Surface Gray */
-  --accent-primary: #e63946; /* Power Crimson */
-  --accent-dim: #2a0a0c;     /* Dark Wine */
-  --text-main: #ffffff;      /* High Contrast White */
-  --text-muted: #888888;     /* Neutral Gray */
-  --border-line: #222222;    /* Subtle Separation */
-  --radius-pro: 4px;         /* Sharp, industrial corners */
+  --bg-primary: #0f1115;     /* Midnight Black */
+  --bg-secondary: #1a1d23;   /* Graphite Gray */
+  --accent-color: #3b82f6;   /* Precision Blue */
+  --accent-muted: #1e293b;   /* Slate Blue */
+  --text-bold: #ffffff;      /* Pure White */
+  --text-body: #94a3b8;      /* Muted Slate */
+  --border-ui: #2d333b;      /* Tech Gray Border */
+  --radius-sm: 4px;          /* Sharp, professional corners */
 }
 
 /* --- Core Reset --- */
@@ -15,12 +15,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', 'Space Grotesk', sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 
 body {
-  background-color: var(--bg-deep);
-  color: var(--text-main);
+  background-color: var(--bg-primary);
+  color: var(--text-body);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -30,164 +30,175 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 10%;
-  background: rgba(5, 5, 5, 0.9);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  padding: 1.2rem 8%;
+  background: rgba(15, 17, 21, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid var(--border-line);
+  border-bottom: 1px solid var(--border-ui);
 }
 
 header h1 {
-  font-size: 1rem;
-  font-weight: 900;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-bold);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: 3px;
 }
 
-/* Desktop Nav */
+/* Desktop Links */
 .nav a {
-  color: var(--text-main);
+  color: var(--text-body);
   text-decoration: none;
-  margin-left: 35px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  transition: 0.3s;
+  margin-left: 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 .nav a:hover {
-  color: var(--accent-primary);
+  color: var(--accent-color);
 }
 
-/* --- The Circular Toggle (Final Version) --- */
+/* --- Professional App-Style Toggle --- */
 .menu-toggle {
   display: none;
-  width: 44px;
-  height: 44px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-line);
-  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-ui);
+  border-radius: var(--radius-sm);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1001;
-  transition: 0.3s;
 }
 
 .menu-toggle span {
   display: block;
-  width: 16px;
-  height: 2px;
-  background: var(--text-main);
-  margin: 2px 0;
-  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 18px;
+  height: 1.5px;
+  background: var(--text-bold);
+  margin: 2.5px 0;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Professional Side Drawer --- */
+/* --- Professional Side Drawer (Mobile) --- */
 @media (max-width: 768px) {
   .menu-toggle { display: flex; }
 
   .nav {
     position: fixed;
     top: 0;
-    right: -280px; /* Fully hidden */
-    width: 260px;
+    right: -280px; /* Hidden off-screen */
+    width: 260px;   /* Side-drawer width */
     height: 100vh;
-    background: var(--bg-surface);
+    background: var(--bg-secondary);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    border-left: 1px solid var(--accent-primary);
-    box-shadow: -50px 0 100px rgba(0, 0, 0, 0.9);
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    padding-left: 30px;
+    border-left: 1px solid var(--border-ui);
+    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Slide logic */
+  /* When JS adds .active class, slide it into view */
   .nav.active {
     transform: translateX(-280px);
   }
 
   .nav a {
     font-size: 1.1rem;
-    margin: 1.5rem 0;
-    color: var(--text-main);
+    margin: 1.2rem 0;
+    color: var(--text-bold);
+    font-weight: 500;
   }
 
-  /* Toggle Animation */
+  /* Animation for Toggle */
   .menu-toggle.active {
-    border-color: var(--accent-primary);
+    border-color: var(--accent-color);
   }
 
-  .menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .menu-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 }
 
-/* --- Section Layouts --- */
+/* --- Content Sections --- */
 section {
-  padding: 8rem 10%;
-  max-width: 1300px;
+  padding: 6rem 8%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin-bottom: 3rem;
-  letter-spacing: -1px;
-  color: var(--text-main);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-bold);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
 }
 
-h2::after {
-  content: '.';
-  color: var(--accent-primary);
+h2::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: var(--accent-color);
+  margin-right: 15px;
+  border-radius: 2px;
 }
 
-/* Hero Style */
+/* Hero Section */
 .hero {
-  text-align: center;
+  text-align: left;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  color: var(--text-bold);
+  line-height: 1.1;
+  margin-bottom: 1rem;
 }
 
 .hero img {
-  border: 1px solid var(--border-line);
-  padding: 10px;
-  background: var(--bg-surface);
-  border-radius: var(--radius-pro);
-  transition: 0.4s;
+  border: 1px solid var(--border-ui);
+  border-radius: var(--radius-sm);
+  filter: grayscale(100%);
+  transition: 0.5s;
 }
 
 .hero img:hover {
-  border-color: var(--accent-primary);
+  filter: grayscale(0%);
+  border-color: var(--accent-color);
 }
 
-/* Project & Service Cards */
+/* Cards & Grid */
 .skills, .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .skill, .project-card, .service {
-  background: var(--bg-surface);
-  padding: 3rem;
-  border-radius: var(--radius-pro);
-  border: 1px solid var(--border-line);
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-ui);
   transition: 0.3s;
 }
 
 .skill:hover, .project-card:hover {
-  background: var(--accent-dim);
-  border-color: var(--accent-primary);
-  transform: scale(1.02);
+  border-color: var(--accent-color);
+  background: var(--accent-muted);
+  transform: translateY(-4px);
 }
 
-/* Tables */
+/* Professional Data Tables */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -195,33 +206,33 @@ table {
 
 th {
   text-align: left;
-  padding: 1.5rem 1rem;
-  font-size: 0.7rem;
+  padding: 1rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--accent-primary);
-  border-bottom: 1px solid var(--border-line);
+  color: var(--text-bold);
+  border-bottom: 2px solid var(--border-ui);
 }
 
 td {
-  padding: 1.5rem 1rem;
-  border-bottom: 1px solid var(--border-line);
-  font-size: 0.9rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-ui);
+}
+
+tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 6rem 10%;
-  background: #000;
-  border-top: 1px solid var(--border-line);
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  letter-spacing: 1px;
+  padding: 4rem 8%;
+  border-top: 1px solid var(--border-ui);
+  color: var(--text-body);
+  font-size: 0.8rem;
 }
 
-/* Custom Selection Color */
+/* Selection */
 ::selection {
-  background: var(--accent-primary);
-  color: #fff;
+  background: var(--accent-color);
+  color: white;
 }
