@@ -1,230 +1,227 @@
-/* --- Color Variables --- */
+/* --- Professional Color Palette --- */
 :root {
-  --bg-dark: #0b0e14;       /* Deepest Indigo */
-  --bg-card: #161b22;       /* Slate Gray-Blue */
-  --accent: #7c3aed;        /* Electric Violet */
-  --accent-light: #a78bfa;  /* Soft Violet */
-  --text-main: #e6edf3;     /* Bright Silver */
-  --text-dim: #7d8590;      /* Muted Steel */
-  --border: rgba(124, 58, 237, 0.2);
+  --bg-body: #0a0c10;       /* Deep Tech Black */
+  --bg-card: #12151c;       /* Dark Navy Slate */
+  --accent: #3b82f6;        /* Professional Azure Blue */
+  --accent-soft: rgba(59, 130, 246, 0.1);
+  --text-primary: #f1f5f9;  /* Crisp White-Slate */
+  --text-secondary: #94a3b8; /* Professional Muted Blue */
+  --border-ui: #1e293b;     /* Slate Border */
+  --radius: 8px;            /* Standard professional rounding */
 }
 
-/* --- General Reset --- */
+/* --- Base Styling --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  line-height: 1.6;
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* --- Header & Desktop Navigation --- */
+/* --- Header & Navigation --- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 8%;
-  background: rgba(11, 14, 20, 0.8);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  padding: 1rem 10%;
+  background: rgba(10, 12, 16, 0.85);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-ui);
 }
 
 header h1 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: -0.5px;
-  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
 }
 
 /* Desktop Links */
 .nav a {
-  color: var(--text-dim);
+  color: var(--text-secondary);
   text-decoration: none;
-  margin-left: 25px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  margin-left: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.2s ease;
 }
 
 .nav a:hover {
-  color: var(--accent-light);
+  color: var(--accent);
 }
 
-/* --- Circle Mobile Menu Button --- */
+/* --- Professional Menu Toggle --- */
 .menu-toggle {
-  display: none; /* Hidden on Desktop */
-  width: 46px;
-  height: 46px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 50%;
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--border-ui);
+  border-radius: var(--radius);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1001;
-  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.3s;
 }
 
 .menu-toggle span {
   display: block;
   width: 18px;
-  height: 2px;
-  background: var(--accent-light);
-  margin: 2px 0;
-  transition: 0.4s;
+  height: 1.5px;
+  background: var(--text-primary);
+  margin: 2.5px 0;
+  transition: 0.3s;
 }
 
-/* --- Mobile Navigation (Side Drawer) --- */
+/* --- Side Drawer Navigation --- */
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: flex; 
-  }
+  .menu-toggle { display: flex; }
 
   .nav {
     position: fixed;
     top: 0;
-    right: -320px; /* Hidden off-screen */
-    width: 260px;   /* Drawer width */
+    right: -300px;
+    width: 260px;
     height: 100vh;
     background: var(--bg-card);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 40px;
-    border-left: 1px solid var(--border);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    justify-content: flex-start;
+    padding: 80px 30px;
+    border-left: 1px solid var(--border-ui);
+    box-shadow: -20px 0 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav.active {
-    right: 0; /* Slide in */
+    transform: translateX(-300px);
   }
 
   .nav a {
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin: 1rem 0;
-    color: var(--text-main);
-    width: 80%;
+    margin-left: 0;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-ui);
+    padding-bottom: 8px;
   }
 
-  /* Hamburger to X Animation */
-  .menu-toggle.active {
-    border-color: var(--accent);
-    background: var(--accent);
-  }
-
-  .menu-toggle.active span {
-    background: #fff;
-  }
-
-  .menu-toggle.active span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-  }
-
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-  }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 }
 
-/* --- Content Sections --- */
+/* --- Section Layouts --- */
 section {
-  padding: 5rem 8%;
+  padding: 6rem 10%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 h2 {
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(to right, #fff, var(--accent-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+}
+
+h2::before {
+  content: "";
+  width: 24px;
+  height: 3px;
+  background: var(--accent);
+  margin-right: 15px;
 }
 
 /* Hero Section */
 .hero {
-  text-align: center;
-  padding-top: 8rem;
+  text-align: left; /* Professional portfolios often favor left-aligned text */
+  padding: 8rem 10% 4rem;
 }
 
 .hero img {
-  border-radius: 24px;
-  margin: 2rem 0;
-  border: 1px solid var(--border);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius);
+  margin-top: 2rem;
+  border: 1px solid var(--border-ui);
+  transition: 0.3s;
 }
 
-/* Grid Layouts for Skills/Projects */
-.skills, .project-category {
+/* Cards (Skills, Projects, Services) */
+.skills, .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .skill, .project-card, .service {
   background: var(--bg-card);
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-ui);
   transition: all 0.3s ease;
 }
 
 .skill:hover, .project-card:hover {
-  transform: translateY(-5px);
-  background: rgba(124, 58, 237, 0.05);
-  border-color: var(--border);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Tables */
+/* Professional Tables */
 table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 10px;
+  border-collapse: collapse;
+  margin-top: 2rem;
 }
 
 th {
-  color: var(--text-dim);
-  text-align: left;
-  padding: 10px;
-  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1rem;
+  border-bottom: 2px solid var(--border-ui);
+  text-align: left;
 }
 
 td {
-  background: var(--bg-card);
-  padding: 15px;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--border-ui);
+  color: var(--text-primary);
 }
 
-td:first-child { border-radius: 8px 0 0 8px; }
-td:last-child { border-radius: 0 8px 8px 0; }
+tr:hover td {
+  background: var(--accent-soft);
+}
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 4rem;
-  border-top: 1px solid var(--border);
-  color: var(--text-dim);
-  font-size: 0.9rem;
+  padding: 5rem 10%;
+  border-top: 1px solid var(--border-ui);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
 }
 
-/* Links */
+/* Link Style */
 a {
-  color: var(--accent-light);
+  color: var(--accent);
   text-decoration: none;
+  font-weight: 500;
 }
