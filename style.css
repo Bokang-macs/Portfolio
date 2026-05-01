@@ -1,47 +1,46 @@
 /* ===============================
-   MODERN PORTFOLIO UI (FULL CSS)
+   STUDENT DEV / BOY STYLE UI
+   Clean, Bright, Modern Energy
    =============================== */
 
-/* --- Color Variables: Modern Tech Theme --- */
+/* --- Color System --- */
 :root {
-  --bg-main: #0b1220;         /* Deep Navy */
-  --bg-alt: #111a2e;          /* Section/Card background */
-  --bg-card: #121c33;         /* Elevated cards */
+  --bg-main: #f4f7ff;        /* soft clean background */
+  --bg-alt: #ffffff;         /* cards */
+  --bg-card: #ffffff;
 
-  --accent: #38bdf8;          /* Sky Blue */
-  --accent-soft: rgba(56,189,248,0.12);
+  --accent: #3b82f6;         /* strong blue */
+  --accent-soft: #dbeafe;    /* light blue */
 
-  --text-headers: #e5e7eb;    /* Soft white */
-  --text-body: #a1a1aa;       /* Muted gray */
+  --text-headers: #0f172a;   /* dark navy */
+  --text-body: #475569;      /* soft gray */
 
-  --border-ui: rgba(255,255,255,0.08);
+  --border-ui: #e2e8f0;
 
-  --radius-pro: 12px;
+  --radius-pro: 14px;
 }
 
-/* --- Global Reset --- */
+/* --- Reset --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
 }
 
 body {
-  background-color: var(--bg-main);
+  background: var(--bg-main);
   color: var(--text-body);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
 }
 
-/* --- Header & Navigation --- */
+/* --- Header --- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 8%;
-  background: rgba(17, 26, 46, 0.75);
-  backdrop-filter: blur(14px);
+  background: white;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -49,52 +48,63 @@ header {
 }
 
 header h1 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-headers);
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
+/* --- Nav --- */
 .nav {
   display: flex;
-  gap: 10px;
 }
 
 .nav a {
-  color: var(--text-body);
+  margin-left: 25px;
   text-decoration: none;
-  margin-left: 30px;
-  font-size: 0.9rem;
+  color: var(--text-body);
   font-weight: 600;
-  transition: 0.25s ease;
+  transition: 0.2s;
+  position: relative;
 }
 
 .nav a:hover {
   color: var(--accent);
-  text-shadow: 0 0 10px rgba(56,189,248,0.4);
 }
 
-/* --- Mobile Toggle Button --- */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: 0.3s;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* --- Mobile Toggle --- */
 .menu-toggle {
   display: none;
-  width: 44px;
-  height: 44px;
-  background: var(--bg-alt);
-  border: 1px solid var(--border-ui);
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  border: 1px solid var(--border-ui);
+  background: white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 1001;
 }
 
 .menu-toggle span {
   width: 18px;
   height: 2px;
   background: var(--text-headers);
-  margin: 2.5px 0;
+  margin: 3px 0;
   transition: 0.3s;
 }
 
@@ -110,25 +120,25 @@ header h1 {
   .nav {
     position: fixed;
     top: 0;
-    right: -300px;
-    width: 280px;
+    right: -100%;
+    width: 250px;
     height: 100vh;
-    background: var(--bg-alt);
+    background: white;
     flex-direction: column;
-    padding: 90px 30px;
+    padding: 80px 25px;
     border-left: 1px solid var(--border-ui);
-    transition: transform 0.35s ease;
+    transition: 0.3s ease;
   }
 
   .nav.active {
-    transform: translateX(-300px);
+    right: 0;
   }
 
   .nav a {
     margin: 15px 0;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   .nav a:hover {
@@ -136,16 +146,8 @@ header h1 {
   }
 
   /* hamburger animation */
-  .menu-toggle.active {
-    background: var(--accent);
-  }
-
-  .menu-toggle.active span {
-    background: white;
-  }
-
   .menu-toggle.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: rotate(45deg) translate(5px, 5px);
   }
 
   .menu-toggle.active span:nth-child(2) {
@@ -153,64 +155,54 @@ header h1 {
   }
 
   .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: rotate(-45deg) translate(5px, -5px);
   }
 }
 
 /* --- Sections --- */
 section {
-  padding: 5rem 8%;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 4rem 8%;
 }
 
+/* --- Headings --- */
 h2 {
-  font-size: 2rem;
-  font-weight: 800;
   color: var(--text-headers);
-  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Cards --- */
+.skill, .project-card, .service {
+  background: var(--bg-card);
+  border: 1px solid var(--border-ui);
+  border-radius: var(--radius-pro);
+  padding: 1.8rem;
+  transition: 0.3s;
+}
+
+.skill:hover, .project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 20px rgba(59,130,246,0.15);
 }
 
 /* --- Hero --- */
 .hero {
-  background: radial-gradient(circle at top right, var(--accent-soft), transparent 40%);
-}
-
-/* --- Cards --- */
-.skills, .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-}
-
-.skill, .project-card, .service {
-  background: var(--bg-card);
-  padding: 2rem;
-  border-radius: var(--radius-pro);
-  border: 1px solid var(--border-ui);
-  transition: 0.3s ease;
-}
-
-.skill:hover, .project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: 0 10px 30px rgba(56,189,248,0.15);
+  background: linear-gradient(135deg, #dbeafe, #f4f7ff);
+  text-align: left;
 }
 
 /* --- Tables --- */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
 }
 
 th {
-  background: var(--bg-alt);
-  color: var(--text-headers);
+  background: var(--accent-soft);
   padding: 1rem;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  border-bottom: 1px solid var(--border-ui);
+  text-align: left;
+  color: var(--text-headers);
 }
 
 td {
@@ -219,16 +211,15 @@ td {
 }
 
 tr:hover td {
-  background: var(--accent-soft);
+  background: #f0f6ff;
 }
 
 /* --- Footer --- */
 footer {
   text-align: center;
-  padding: 4rem 8%;
-  background: var(--bg-alt);
+  padding: 3rem;
+  background: white;
   border-top: 1px solid var(--border-ui);
-  color: var(--text-body);
 }
 
 /* --- Links --- */
@@ -236,15 +227,10 @@ a {
   color: var(--accent);
   font-weight: 600;
   text-decoration: none;
-  transition: 0.2s;
-}
-
-a:hover {
-  opacity: 0.85;
 }
 
 /* --- Selection --- */
 ::selection {
   background: var(--accent);
-  color: #0b1220;
+  color: white;
 }
