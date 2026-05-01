@@ -1,27 +1,27 @@
-/* --- Professional Color Palette --- */
+/* --- The Final Palette: Cyber-Onyx & Crimson --- */
 :root {
-  --bg-body: #0a0c10;       /* Deep Tech Black */
-  --bg-card: #12151c;       /* Dark Navy Slate */
-  --accent: #3b82f6;        /* Professional Azure Blue */
-  --accent-soft: rgba(59, 130, 246, 0.1);
-  --text-primary: #f1f5f9;  /* Crisp White-Slate */
-  --text-secondary: #94a3b8; /* Professional Muted Blue */
-  --border-ui: #1e293b;     /* Slate Border */
-  --radius: 8px;            /* Standard professional rounding */
+  --bg-deep: #050505;        /* Pure Onyx */
+  --bg-surface: #111111;     /* Surface Gray */
+  --accent-primary: #e63946; /* Power Crimson */
+  --accent-dim: #2a0a0c;     /* Dark Wine */
+  --text-main: #ffffff;      /* High Contrast White */
+  --text-muted: #888888;     /* Neutral Gray */
+  --border-line: #222222;    /* Subtle Separation */
+  --radius-pro: 4px;         /* Sharp, industrial corners */
 }
 
-/* --- Base Styling --- */
+/* --- Core Reset --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', 'Space Grotesk', sans-serif;
 }
 
 body {
-  background-color: var(--bg-body);
-  color: var(--text-primary);
-  line-height: 1.7;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
@@ -30,198 +30,198 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 10%;
-  background: rgba(10, 12, 16, 0.85);
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
+  padding: 1.5rem 10%;
+  background: rgba(5, 5, 5, 0.9);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid var(--border-ui);
+  border-bottom: 1px solid var(--border-line);
 }
 
 header h1 {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--accent);
+  letter-spacing: 3px;
 }
 
-/* Desktop Links */
+/* Desktop Nav */
 .nav a {
-  color: var(--text-secondary);
+  color: var(--text-main);
   text-decoration: none;
-  margin-left: 30px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: 0.2s ease;
+  margin-left: 35px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: 0.3s;
 }
 
 .nav a:hover {
-  color: var(--accent);
+  color: var(--accent-primary);
 }
 
-/* --- Professional Menu Toggle --- */
+/* --- The Circular Toggle (Final Version) --- */
 .menu-toggle {
   display: none;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 1px solid var(--border-ui);
-  border-radius: var(--radius);
+  width: 44px;
+  height: 44px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-line);
+  border-radius: 50%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1001;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .menu-toggle span {
   display: block;
-  width: 18px;
-  height: 1.5px;
-  background: var(--text-primary);
-  margin: 2.5px 0;
-  transition: 0.3s;
+  width: 16px;
+  height: 2px;
+  background: var(--text-main);
+  margin: 2px 0;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* --- Side Drawer Navigation --- */
+/* --- Professional Side Drawer --- */
 @media (max-width: 768px) {
   .menu-toggle { display: flex; }
 
   .nav {
     position: fixed;
     top: 0;
-    right: -300px;
+    right: -280px; /* Fully hidden */
     width: 260px;
     height: 100vh;
-    background: var(--bg-card);
+    background: var(--bg-surface);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 80px 30px;
-    border-left: 1px solid var(--border-ui);
-    box-shadow: -20px 0 40px rgba(0, 0, 0, 0.4);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid var(--accent-primary);
+    box-shadow: -50px 0 100px rgba(0, 0, 0, 0.9);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
   }
 
+  /* Slide logic */
   .nav.active {
-    transform: translateX(-300px);
+    transform: translateX(-280px);
   }
 
   .nav a {
-    font-size: 1rem;
-    margin: 1rem 0;
-    margin-left: 0;
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--border-ui);
-    padding-bottom: 8px;
+    font-size: 1.1rem;
+    margin: 1.5rem 0;
+    color: var(--text-main);
   }
 
-  .menu-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .menu-toggle.active span:nth-child(2) { opacity: 0; }
-  .menu-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  /* Toggle Animation */
+  .menu-toggle.active {
+    border-color: var(--accent-primary);
+  }
+
+  .menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 }
 
 /* --- Section Layouts --- */
 section {
-  padding: 6rem 10%;
-  max-width: 1200px;
+  padding: 8rem 10%;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
 h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 2.5rem;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+  letter-spacing: -1px;
+  color: var(--text-main);
 }
 
-h2::before {
-  content: "";
-  width: 24px;
-  height: 3px;
-  background: var(--accent);
-  margin-right: 15px;
+h2::after {
+  content: '.';
+  color: var(--accent-primary);
 }
 
-/* Hero Section */
+/* Hero Style */
 .hero {
-  text-align: left; /* Professional portfolios often favor left-aligned text */
-  padding: 8rem 10% 4rem;
+  text-align: center;
 }
 
 .hero img {
-  border-radius: var(--radius);
-  margin-top: 2rem;
-  border: 1px solid var(--border-ui);
-  transition: 0.3s;
+  border: 1px solid var(--border-line);
+  padding: 10px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-pro);
+  transition: 0.4s;
 }
 
-/* Cards (Skills, Projects, Services) */
+.hero img:hover {
+  border-color: var(--accent-primary);
+}
+
+/* Project & Service Cards */
 .skills, .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
 .skill, .project-card, .service {
-  background: var(--bg-card);
-  padding: 2.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border-ui);
-  transition: all 0.3s ease;
+  background: var(--bg-surface);
+  padding: 3rem;
+  border-radius: var(--radius-pro);
+  border: 1px solid var(--border-line);
+  transition: 0.3s;
 }
 
 .skill:hover, .project-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: var(--accent-dim);
+  border-color: var(--accent-primary);
+  transform: scale(1.02);
 }
 
-/* Professional Tables */
+/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 2rem;
 }
 
 th {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 1rem;
-  border-bottom: 2px solid var(--border-ui);
   text-align: left;
+  padding: 1.5rem 1rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-primary);
+  border-bottom: 1px solid var(--border-line);
 }
 
 td {
-  padding: 1.25rem 1rem;
-  border-bottom: 1px solid var(--border-ui);
-  color: var(--text-primary);
-}
-
-tr:hover td {
-  background: var(--accent-soft);
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid var(--border-line);
+  font-size: 0.9rem;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 5rem 10%;
-  border-top: 1px solid var(--border-ui);
-  color: var(--text-secondary);
-  font-size: 0.85rem;
+  padding: 6rem 10%;
+  background: #000;
+  border-top: 1px solid var(--border-line);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
 }
 
-/* Link Style */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
+/* Custom Selection Color */
+::selection {
+  background: var(--accent-primary);
+  color: #fff;
 }
