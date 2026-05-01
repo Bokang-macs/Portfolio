@@ -1,57 +1,9 @@
 /* =========================
-   RESET (remove default browser spacing)
+   MOBILE NAV (CIRCLE MENU SYSTEM)
+   ONLY RESPONSIBLE FOR MOBILE BEHAVIOUR
 ========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* =========================
-   BODY (global styles)
-========================= */
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f7;
-  color: #222;
-  line-height: 1.6;
-}
-
-/* =========================
-   HEADER (top bar)
-========================= */
-header {
-  background: #004466;
-  color: white;
-  padding: 15px;
-  position: sticky; /* stays on top */
-  top: 0;
-  z-index: 1000;
-}
-
-/* =========================
-   NAVIGATION (desktop)
-========================= */
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* hover effect */
-.nav a:hover {
-  color: #ffcc00;
-}
-
-/* =========================
-   CIRCLE MENU BUTTON (mobile)
-========================= */
+/* Circle menu button */
 .menu-toggle {
   display: none; /* hidden on desktop */
   width: 50px;
@@ -63,7 +15,7 @@ header {
   top: 15px;
   cursor: pointer;
 
-  /* center lines */
+  /* center the 3 lines */
   justify-content: center;
   align-items: center;
 }
@@ -74,10 +26,10 @@ header {
   width: 25px;
   height: 3px;
   background: black;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
-/* top line */
+/* top line position */
 .menu-toggle span:nth-child(1) {
   transform: translateY(-7px);
 }
@@ -93,7 +45,7 @@ header {
 }
 
 /* =========================
-   ACTIVE STATE (turn into X)
+   ACTIVE STATE (turn circle into X)
 ========================= */
 .menu-toggle.active span:nth-child(1) {
   transform: rotate(45deg);
@@ -108,14 +60,16 @@ header {
 }
 
 /* =========================
-   MOBILE NAV
+   MOBILE NAV BEHAVIOR
 ========================= */
 @media (max-width: 768px) {
 
+  /* show circle button */
   .menu-toggle {
-    display: flex; /* show circle button */
+    display: flex;
   }
 
+  /* hidden menu by default */
   .nav {
     display: none;
     flex-direction: column;
@@ -128,12 +82,14 @@ header {
     border-radius: 10px;
   }
 
+  /* show menu when active */
   .nav.active {
-    display: flex; /* show when clicked */
+    display: flex;
   }
 
   .nav a {
     padding: 10px;
     border-bottom: 1px solid #006699;
+    color: white;
   }
 }
