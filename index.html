@@ -11,18 +11,24 @@
 
   <!-- Header / Navigation -->
   <header>
-    <div class ="marquee-container">
-    <marquee behavior="scroll" direction="left" scrollamount="10">Welcome to My Portfolio!</marquee>
-     </div>
-    <h1>Rotondwa Given Machete</h1>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About Me</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+  <h1>My Portfolio</h1>
+
+  <!-- Circle menu button -->
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -31,7 +37,7 @@
     <p>Student & Aspiring Developer | Passionate about Web Development and Programming</p>
       </div>
     <img src="Images/IMG .jpg" alt="Rotondwa Machete" width="200">
-    <p class="caption">📸 My professional profile</p>
+    <p class="caption"> My professional profile</p>
   </section>
 
   <!-- About Me / Personal Summary -->
@@ -112,22 +118,7 @@
     <p>&copy; 2025 Rotondwa Machete | All Rights Reserved</p>
   </footer>
 
-  <!-- JavaScript for Hamburger Menu -->
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navbar = document.querySelector('nav');
-
-    hamburger.addEventListener('click', () => {
-      navbar.classList.toggle('active');
-    });
-
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navbar.classList.remove('active');
-      });
-    });
-  </script>
+<script src="script.js"></script>
 
 </body>
 </html>
