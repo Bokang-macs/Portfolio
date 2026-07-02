@@ -1,236 +1,681 @@
-/* ===============================
-   STUDENT DEV / BOY STYLE UI
-   Clean, Bright, Modern Energy
-   =============================== */
+/* ======================================================================
+   ROTONDWA MACHETE — DEVELOPER PORTFOLIO
+   Design system: "IDE / Terminal" identity.
 
-/* --- Color System --- */
+   WHY THIS LOOK: the visitor is deciding whether to hire a developer.
+   The strongest proof of skill is a site that LOOKS like it was built by
+   one — so the whole design borrows from a code editor: dark "IDE" hero,
+   section labels styled as real code comments, cards tagged like files.
+   This is not decoration for its own sake — every terminal/file element
+   below maps to something real about how you work.
+
+   HOW TO READ THIS FILE (Java/C++ analogies, since that's your base):
+   - :root { --var } is like `#define` / a `static final` constant block.
+     Define a value ONCE at the top, reuse it everywhere. Change it once,
+     it updates everywhere it's used — same reason you don't hardcode a
+     magic number in 10 different methods.
+   - @media (...) { } is an if-statement that runs at RENDER TIME, based
+     on screen width, not program logic. "if (screenWidth < 600) { ... }"
+   - .class { } is like defining a reusable object "type" — you stamp the
+     same class onto many HTML elements the way you'd instantiate the
+     same Java class many times with different data.
+   ====================================================================== */
+
+/* ----------------------------------------------------------------------
+   1. DESIGN TOKENS (the constants block)
+   Every color, spacing unit, and radius used anywhere in this file is
+   declared here ONCE. If you want to re-brand the whole site later,
+   this is the only section you should need to touch.
+   ---------------------------------------------------------------------- */
 :root {
-  --bg-main: #f4f7ff;        /* soft clean background */
-  --bg-alt: #ffffff;         /* cards */
-  --bg-card: #ffffff;
+  /* --- Core palette --- */
+  --ink:          #0B1220;  /* near-black navy: header, hero, footer bg */
+  --ink-soft:     #16213E;  /* lighter navy: cards INSIDE dark sections */
+  --paper:        #F7F9FC;  /* main body background (light sections) */
+  --paper-card:   #FFFFFF;  /* card background on the light sections */
 
-  --accent: #3b82f6;         /* strong blue */
-  --accent-soft: #dbeafe;    /* light blue */
+  --accent:       #34D399;  /* terminal green — primary actions/links */
+  --accent-dark:  #10B981;  /* darker green — hover state for accent */
+  --accent-amber: #FBBF24;  /* amber — secondary highlight / badges */
 
-  --text-headers: #0f172a;   /* dark navy */
-  --text-body: #475569;      /* soft gray */
+  --text-body:    #334155;  /* body copy on light background */
+  --text-muted:   #5B6B85;  /* secondary/caption text */
+  --text-on-ink:  #E2E8F0;  /* body copy on dark background */
+  --text-on-ink-muted: #8896B3;
 
-  --border-ui: #e2e8f0;
+  --border:       #E2E8F0;  /* hairline borders on light sections */
+  --border-ink:   #26314F;  /* hairline borders on dark sections */
 
-  --radius-pro: 14px;
+  /* --- Shape & spacing --- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* --- Type scale ---
+     clamp(min, preferred, max) = fluid sizing: the browser picks a value
+     between min and max based on viewport width. This replaces having a
+     separate font-size rule inside every @media block — one line covers
+     phone through desktop. Think of it like a formula instead of a
+     lookup table of hardcoded cases. */
+  --fs-hero:    clamp(1.9rem, 1.2rem + 3.2vw, 3.4rem);
+  --fs-h2:      clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
+  --fs-h3:      clamp(1.1rem, 0.95rem + 0.6vw, 1.3rem);
+  --fs-body:    clamp(0.98rem, 0.94rem + 0.15vw, 1.05rem);
 }
 
-/* --- Reset --- */
+/* ----------------------------------------------------------------------
+   2. RESET
+   Browsers ship with inconsistent default spacing/sizing on elements.
+   This zeroes that out so YOUR rules are the only source of truth —
+   comparable to why you'd initialise a variable explicitly in Java
+   instead of trusting an implicit default.
+   ---------------------------------------------------------------------- */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', system-ui, sans-serif;
+  box-sizing: border-box; /* width/height include padding+border, not just content */
+}
+
+html {
+  scroll-behavior: smooth;      /* smooth-scrolls to #anchors instead of jump-cutting */
+  -webkit-text-size-adjust: 100%; /* stops iOS auto-inflating text size */
 }
 
 body {
-  background: var(--bg-main);
+  background: var(--paper);
   color: var(--text-body);
-  line-height: 1.6;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  overflow-x: hidden; /* safety net: nothing should ever force sideways page scroll */
 }
 
-/* --- Header --- */
+img {
+  max-width: 100%;   /* an image can NEVER be wider than its container */
+  height: auto;       /* keeps aspect ratio when width is constrained */
+  display: block;
+}
+
+a { color: inherit; text-decoration: none; }
+
+ul, ol { list-style: none; }
+
+/* Respect users who've told their OS "reduce motion" (accessibility
+   setting) — same idea as checking a feature flag before running an
+   animation branch. We disable the typing/scroll animations for them. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ----------------------------------------------------------------------
+   3. TYPOGRAPHY UTILITIES
+   ---------------------------------------------------------------------- */
+h1, h2, h3, .mono {
+  font-family: 'Space Mono', 'Courier New', monospace;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* The "code comment" eyebrow label used above every section heading.
+   Real comments in your code look like `// something` — reusing that
+   exact visual grammar here is the site's signature device: it's not a
+   decorative icon, it's literally how you annotate things as a coder. */
+.eyebrow {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent-dark);
+  background: rgba(52, 211, 153, 0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.section-intro {
+  max-width: 640px;
+  color: var(--text-muted);
+  margin-bottom: 2.4rem;
+}
+
+/* ----------------------------------------------------------------------
+   4. LAYOUT PRIMITIVES
+   ---------------------------------------------------------------------- */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;   /* shorthand for margin-left + margin-right: auto → centers block */
+  padding-inline: 6%;
+}
+
+section { padding: 5rem 0; }
+
+.section-dark {
+  background: var(--ink);
+  color: var(--text-on-ink);
+}
+
+/* ----------------------------------------------------------------------
+   5. HEADER / NAVIGATION
+   ---------------------------------------------------------------------- */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 8%;
-  background: white;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid var(--border-ui);
+  background: var(--ink);
+  border-bottom: 1px solid var(--border-ink);
 }
 
-header h1 {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--text-headers);
+.header-inner {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: 1.1rem 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-/* --- Nav --- */
+.logo {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-on-ink);
+  white-space: nowrap;
+}
+.logo span { color: var(--accent); }
+
 .nav {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .nav a {
-  margin-left: 25px;
-  text-decoration: none;
-  color: var(--text-body);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-on-ink-muted);
   font-weight: 600;
+  font-size: 0.95rem;
   transition: 0.2s;
-  position: relative;
 }
 
-.nav a:hover {
-  color: var(--accent);
-}
-
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 2px;
+.nav a:hover,
+.nav a.active {
+  color: var(--ink);
   background: var(--accent);
-  transition: 0.3s;
 }
 
-.nav a:hover::after {
-  width: 100%;
-}
-
-/* --- Mobile Toggle --- */
+/* Hamburger button — hidden by default, only shown under 900px.
+   It's a plain button styled as three bars ("span" x 3 in the HTML). */
 .menu-toggle {
   display: none;
   width: 42px;
   height: 42px;
+  min-width: 42px;
   border-radius: 50%;
-  border: 1px solid var(--border-ui);
-  background: white;
+  border: 1px solid var(--border-ink);
+  background: transparent;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  gap: 4px;
 }
-
 .menu-toggle span {
   width: 18px;
   height: 2px;
-  background: var(--text-headers);
-  margin: 3px 0;
+  background: var(--text-on-ink);
   transition: 0.3s;
 }
 
-/* ===============================
-   MOBILE NAV
-   =============================== */
-@media (max-width: 768px) {
-
-  .menu-toggle {
-    display: flex;
-  }
+@media (max-width: 900px) {
+  .menu-toggle { display: flex; }
 
   .nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 250px;
+    width: min(280px, 82vw);
     height: 100vh;
-    background: white;
+    background: var(--ink);
     flex-direction: column;
-    padding: 80px 25px;
-    border-left: 1px solid var(--border-ui);
-    transition: 0.3s ease;
+    padding: 6.5rem 1.6rem 2rem;
+    border-left: 1px solid var(--border-ink);
+    transition: right 0.3s ease;
+    overflow-y: auto;
   }
+  .nav.active { right: 0; }
+  .nav a { width: 100%; padding: 0.9rem 1rem; }
 
-  .nav.active {
-    right: 0;
-  }
-
-  .nav a {
-    margin: 15px 0;
-    font-size: 1.1rem;
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  .nav a:hover {
-    background: var(--accent-soft);
-  }
-
-  /* hamburger animation */
-  .menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 }
 
-/* --- Sections --- */
-section {
-  padding: 4rem 8%;
+/* ----------------------------------------------------------------------
+   6. BUTTONS
+   Two variants: solid (primary action) and outline (secondary action).
+   Written once, reused everywhere — the whole point of a class system.
+   ---------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
+.btn:hover { transform: translateY(-2px); }
 
-/* --- Headings --- */
-h2 {
-  color: var(--text-headers);
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-
-/* --- Cards --- */
-.skill, .project-card, .service {
-  background: var(--bg-card);
-  border: 1px solid var(--border-ui);
-  border-radius: var(--radius-pro);
-  padding: 1.8rem;
-  transition: 0.3s;
-}
-
-.skill:hover, .project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 10px 20px rgba(59,130,246,0.15);
-}
-
-/* --- Hero --- */
-.hero {
-  background: linear-gradient(135deg, #dbeafe, #f4f7ff);
-  text-align: left;
-}
-
-/* --- Tables --- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th {
-  background: var(--accent-soft);
-  padding: 1rem;
-  text-align: left;
-  color: var(--text-headers);
-}
-
-td {
-  padding: 1rem;
-  border-bottom: 1px solid var(--border-ui);
-}
-
-tr:hover td {
-  background: #f0f6ff;
-}
-
-/* --- Footer --- */
-footer {
-  text-align: center;
-  padding: 3rem;
-  background: white;
-  border-top: 1px solid var(--border-ui);
-}
-
-/* --- Links --- */
-a {
-  color: var(--accent);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* --- Selection --- */
-::selection {
+.btn-primary {
   background: var(--accent);
-  color: white;
+  color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--accent-dark);
+  box-shadow: 0 10px 24px rgba(52, 211, 153, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border-ink);
+  color: var(--text-on-ink);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+/* ----------------------------------------------------------------------
+   7. HERO — the terminal window
+   Markup shape (see index.html):
+   .terminal > .terminal-bar (3 dots + filename) + .terminal-body (lines)
+   This is the single "signature" visual of the whole site.
+   ---------------------------------------------------------------------- */
+.hero {
+  padding-top: 4.5rem;
+  padding-bottom: 5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+.hero h1 span { color: var(--accent); }
+
+.hero p {
+  color: var(--text-on-ink-muted);
+  max-width: 46ch;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+/* The terminal "window chrome" — the little colored dots that make any
+   box read instantly as "a computer terminal" to anyone who's seen one. */
+.terminal {
+  background: var(--ink-soft);
+  border: 1px solid var(--border-ink);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--border-ink);
+}
+.terminal-dot { width: 11px; height: 11px; border-radius: 50%; }
+.terminal-dot.red { background: #FF5F56; }
+.terminal-dot.yellow { background: #FFBD2E; }
+.terminal-dot.green { background: #27C93F; }
+.terminal-filename {
+  margin-left: 0.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-on-ink-muted);
+}
+
+.terminal-body {
+  padding: 1.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.92rem;
+  line-height: 1.9;
+  min-height: 220px;
+}
+.terminal-body .prompt { color: var(--accent-amber); }
+.terminal-body .output { color: var(--text-on-ink); }
+.terminal-body .comment { color: var(--text-on-ink-muted); }
+
+/* Each terminal line starts invisible; script.js flips opacity to 1 one
+   line at a time. The transition below is what makes that flip a fade-in
+   instead of an instant snap — CSS handles the "how it animates" part,
+   JS only handles the "when" part. Clean separation of concerns. */
+.terminal-body .line {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.terminal-body .line:first-child {
+  opacity: 1;
+}
+
+/* Blinking cursor — a tiny CSS animation, no JS required. This is the
+   "leverage motion deliberately" moment: ONE small, purposeful animation
+   that mimics a real terminal, instead of decorations everywhere. */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ----------------------------------------------------------------------
+   8. FILE-TAG BADGES
+   Small pill labels styled like file extensions (.java / .cpp / .html),
+   used on skill cards and project cards so a client can scan your stack
+   in one second, and it echoes the "developer" identity again.
+   ---------------------------------------------------------------------- */
+.tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.tag-java  { color: #B45309; background: #FEF3C7; border-color: #FDE68A; }
+.tag-cpp   { color: #1D4ED8; background: #DBEAFE; border-color: #BFDBFE; }
+.tag-web   { color: #047857; background: #D1FAE5; border-color: #A7F3D0; }
+.tag-media { color: #7C3AED; background: #EDE9FE; border-color: #DDD6FE; }
+
+/* ----------------------------------------------------------------------
+   9. CARD GRIDS (skills / services / projects)
+   `auto-fit` + `minmax()` is a SELF-ADJUSTING grid: the browser fits as
+   many columns as will comfortably hold `minmax()`'s minimum width, and
+   stretches them evenly. This one rule replaces writing a separate
+   "1 column on phone / 2 on tablet / 3 on desktop" rule for every
+   breakpoint — closer to a formula than a hardcoded switch-statement.
+   ---------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem;
+}
+
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.card p { color: var(--text-muted); font-size: 0.96rem; }
+
+/* Skill progress bar — a thin track + filled bar, width set inline via
+   `style="width: 90%"` in the HTML (same idea as passing a variable into
+   a constructor: the CSS defines the shape, the HTML supplies the value). */
+.bar-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--border);
+  margin-top: 0.9rem;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+}
+
+/* ----------------------------------------------------------------------
+   10. PROJECT FILTERS
+   Buttons toggle a `data-filter` attribute; script.js reads it and
+   shows/hides `.project-card` elements whose `data-category` matches.
+   Pure CSS can't read JS-driven state changes like this, so this part
+   is finished off in script.js — see the comments there.
+   ---------------------------------------------------------------------- */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.2rem;
+}
+.filter-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--paper-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--ink); }
+.filter-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--accent);
+}
+.project-card.is-hidden { display: none; }
+
+/* ----------------------------------------------------------------------
+   11. TIMELINE (about.html education history)
+   A vertical line + dots is only justified here because education really
+   IS a sequence in time — unlike numbering things that aren't ordered.
+   ---------------------------------------------------------------------- */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid var(--border);
+}
+.timeline-item { position: relative; padding-bottom: 1.8rem; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.4rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.timeline-item h3 { margin-bottom: 0.2rem; }
+.timeline-item span { color: var(--text-muted); font-size: 0.9rem; font-family: 'Space Mono', monospace; }
+
+/* ----------------------------------------------------------------------
+   12. PRICING CARDS (replaces the old raw <table>)
+   WHY A TABLE WAS THE WRONG ELEMENT: a <table> is for data you compare
+   ACROSS rows and columns at once (like a spreadsheet). A service list
+   is really just "N independent items, each with the same shape" — a
+   grid of cards. Cards also solve the mobile problem outright: a table
+   forces horizontal scrolling on a phone, cards just restack to one
+   column. Fixing the RIGHT element beats patching the wrong one.
+   ---------------------------------------------------------------------- */
+.price-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.price-card .time {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent-dark);
+  background: rgba(52,211,153,0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+  align-self: flex-start;
+}
+
+/* ----------------------------------------------------------------------
+   13. TESTIMONIALS
+   ---------------------------------------------------------------------- */
+.quote-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+}
+.quote-card p { color: var(--text-body); font-style: italic; margin-bottom: 1rem; }
+.quote-card cite {
+  font-family: 'Space Mono', monospace;
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ----------------------------------------------------------------------
+   14. CONTACT CARD (replaces the old raw <table>)
+   A definition list of key → value pairs, styled like the output of
+   running `cat contact.txt` in a terminal. Same reasoning as the pricing
+   cards: this data isn't tabular (no rows being compared against each
+   other), it's one record — a list is the honest structure for it, and
+   it can never overflow a phone screen the way a <table> can.
+   ---------------------------------------------------------------------- */
+.contact-card {
+  background: var(--ink-soft);
+  border: 1px solid var(--border-ink);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  font-family: 'Space Mono', monospace;
+}
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border-ink);
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-key { color: var(--text-on-ink-muted); min-width: 110px; }
+.contact-val { color: var(--accent); font-weight: 700; }
+.contact-val a:hover { text-decoration: underline; }
+
+.social-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
+.social-pill {
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+.social-pill:hover { border-color: var(--accent); color: var(--accent-dark); background: rgba(52,211,153,0.08); }
+
+/* ----------------------------------------------------------------------
+   15. CTA BANNER
+   ---------------------------------------------------------------------- */
+.cta-banner {
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 3.2rem 2.5rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+.cta-banner h2 { color: var(--text-on-ink); }
+.cta-banner p { color: var(--text-on-ink-muted); max-width: 50ch; margin: 0.8rem auto 1.8rem; }
+
+/* ----------------------------------------------------------------------
+   16. FOOTER
+   ---------------------------------------------------------------------- */
+footer {
+  background: var(--ink);
+  color: var(--text-on-ink-muted);
+  text-align: center;
+  padding: 2.6rem 6%;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-ink);
+}
+
+/* ----------------------------------------------------------------------
+   17. RESPONSIVE BREAKPOINTS
+   Two stops: tablet (900px) and phone (600px). Everything ABOVE this
+   block already flexes on its own thanks to clamp()/grid/auto-fit — this
+   section only overrides the handful of things that genuinely need a
+   hard rule change (stacking the hero, tightening spacing).
+   ---------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  section { padding: 3.6rem 0; }
+}
+
+@media (max-width: 600px) {
+  .container { padding-inline: 5.5%; }
+  section { padding: 2.8rem 0; }
+  .terminal-body { font-size: 0.82rem; padding: 1.2rem; }
+  .cta-banner { padding: 2.2rem 1.4rem; }
+  .btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 360px) {
+  .logo { font-size: 0.95rem; }
 }

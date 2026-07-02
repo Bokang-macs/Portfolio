@@ -4,114 +4,129 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Rotondwa Machete</title>
+  <meta name="description" content="Java, C++, web, and multimedia projects built by Rotondwa Machete.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header / Navigation -->
   <header>
-  
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-  <!-- Projects Section -->
-  <section class="projects">
-    <h2>My Projects</h2>
-    <p>Here are some of the projects I have developed using Java, C++, HTML/CSS, and multimedia tools.</p>
-
-    <!-- Java Projects -->
-    <div class="project-category">
-      <h3>Java Projects</h3>
-      <div class="project-card">
-        <h4>Hotel Booking System</h4>
-        <p>A desktop application for managing hotel reservations and customer bookings.</p>
-        <p><strong>Technologies:</strong> Java, OOP</p>
+    <div class="header-inner">
+      <a href="index.html" class="logo">&lt;RM<span>/</span>&gt;</a>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
       </div>
-      <div class="project-card">
-        <h4>Unit Converter</h4>
-        <p>Converts units for length, weight, temperature, and more.</p>
-        <p><strong>Technologies:</strong> Java</p>
-      </div>
-      <div class="project-card">
-        <h4>Foreign Currency Converter</h4>
-        <p>Converts currencies based on current exchange rates.</p>
-        <p><strong>Technologies:</strong> Java</p>
-      </div>
-      <div class="project-card">
-        <h4>Guess Game</h4>
-        <p>Interactive number guessing game with score tracking.</p>
-        <p><strong>Technologies:</strong> Java</p>
-      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- C++ Projects -->
-    <div class="project-category">
-      <h3>C++ Projects</h3>
-      <div class="project-card">
-        <h4>To-Do List</h4>
-        <p>Console application to manage tasks and priorities.</p>
-        <p><strong>Technologies:</strong> C++</p>
-      </div>
-      <div class="project-card">
-        <h4>Phine-City-Zoo</h4>
-        <p>Simulation of a zoo with animals and management features.</p>
-        <p><strong>Technologies:</strong> C++</p>
-      </div>
-      <div class="project-card">
-        <h4>Calculator App</h4>
-        <p>Console calculator with basic arithmetic and functions.</p>
-        <p><strong>Technologies:</strong> C++</p>
-      </div>
+  <section class="section-dark" style="padding: 3.4rem 0;">
+    <div class="container">
+      <p class="hero-eyebrow">// projects/index</p>
+      <h1 style="font-size: var(--fs-h2);">My Projects</h1>
+      <p style="color:var(--text-on-ink-muted); max-width:56ch; margin-top:0.8rem;">
+        Everything below was built by me, end to end. Filter by category
+        to jump to what's relevant to you.
+      </p>
     </div>
-
-    <!-- Web Projects -->
-    <div class="project-category">
-      <h3>Web Projects (HTML & CSS)</h3>
-      <div class="project-card">
-        <h4>Avengers App</h4>
-        <p>Informational web page about Avengers characters and movies.</p>
-        <p><strong>Technologies:</strong> HTML, CSS</p>
-      </div>
-      <div class="project-card">
-        <h4>Portfolio Website</h4>
-        <p>My personal portfolio website showcasing my skills and projects.</p>
-        <p><strong>Technologies:</strong> HTML, CSS</p>
-      </div>
-    </div>
-
-    <!-- Multimedia Projects -->
-    <div class="project-category">
-      <h3>Multimedia Projects</h3>
-      <div class="project-card">
-        <h4>Video Editing</h4>
-        <p>Edited videos for school and community projects.</p>
-        <p><strong>Tools:</strong> Video editing software</p>
-      </div>
-      <div class="project-card">
-        <h4>Audio Production</h4>
-        <p>Created and edited audio recordings for projects.</p>
-        <p><strong>Tools:</strong> Audio software</p>
-      </div>
-    </div>
-
   </section>
 
-  <!-- Footer -->
+  <section>
+    <div class="container">
+
+      <!-- FILTER BUTTONS
+           Each button's data-filter value must match a project card's
+           data-category value exactly — script.js compares these two
+           strings to decide what to show/hide. See script.js section 3
+           for the full explanation. -->
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="java">Java</button>
+        <button class="filter-btn" data-filter="cpp">C++</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="media">Multimedia</button>
+      </div>
+
+      <div class="grid">
+
+        <!-- JAVA -->
+        <div class="card project-card" data-category="java">
+          <div class="card-head"><h3>Hotel Booking System</h3><span class="tag tag-java">.java</span></div>
+          <p>Desktop application for managing hotel reservations and customer bookings, using OOP and file-backed persistence.</p>
+        </div>
+        <div class="card project-card" data-category="java">
+          <div class="card-head"><h3>Unit Converter</h3><span class="tag tag-java">.java</span></div>
+          <p>Converts units for length, weight, temperature, and more.</p>
+        </div>
+        <div class="card project-card" data-category="java">
+          <div class="card-head"><h3>Currency Converter</h3><span class="tag tag-java">.java</span></div>
+          <p>Converts between currencies based on exchange rate input.</p>
+        </div>
+        <div class="card project-card" data-category="java">
+          <div class="card-head"><h3>Guess Game</h3><span class="tag tag-java">.java</span></div>
+          <p>Interactive number guessing game with score tracking.</p>
+        </div>
+
+        <!-- C++ -->
+        <div class="card project-card" data-category="cpp">
+          <div class="card-head"><h3>To-Do List</h3><span class="tag tag-cpp">.cpp</span></div>
+          <p>Console application to manage tasks and priorities.</p>
+        </div>
+        <div class="card project-card" data-category="cpp">
+          <div class="card-head"><h3>Phine-City-Zoo</h3><span class="tag tag-cpp">.cpp</span></div>
+          <p>Simulation of a zoo with animals and management features.</p>
+        </div>
+        <div class="card project-card" data-category="cpp">
+          <div class="card-head"><h3>Calculator App</h3><span class="tag tag-cpp">.cpp</span></div>
+          <p>Console calculator with core arithmetic and functions.</p>
+        </div>
+
+        <!-- WEB -->
+        <div class="card project-card" data-category="web">
+          <div class="card-head"><h3>Avengers App</h3><span class="tag tag-web">.html</span></div>
+          <p>Informational web page about Avengers characters and movies.</p>
+        </div>
+        <div class="card project-card" data-category="web">
+          <div class="card-head"><h3>This Portfolio</h3><span class="tag tag-web">.css</span></div>
+          <p>Hand-built responsive portfolio site — the one you're on now.</p>
+        </div>
+
+        <!-- MULTIMEDIA -->
+        <div class="card project-card" data-category="media">
+          <div class="card-head"><h3>Video Editing</h3><span class="tag tag-media">.mp4</span></div>
+          <p>Edited videos for school and community projects.</p>
+        </div>
+        <div class="card project-card" data-category="media">
+          <div class="card-head"><h3>Audio Production</h3><span class="tag tag-media">.wav</span></div>
+          <p>Created and edited audio recordings for various projects.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Like what you see?</h2>
+        <p>These are learning and portfolio builds — I can build the same quality for your project.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="contact.html" class="btn btn-primary">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2026 Rotondwa Machete | All Rights Reserved</p>
+    <p>&copy; 2026 Machete &amp; Makananisa Digital Solutions | All Rights Reserved</p>
   </footer>
 
   <script src="script.js"></script>

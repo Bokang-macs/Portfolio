@@ -4,54 +4,85 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Rotondwa Machete</title>
+  <meta name="description" content="Get in touch with Rotondwa Machete for web development, Java applications, and software projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header / Navigation -->
- <header>
-  <!-- Circle menu button -->
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">&lt;RM<span>/</span>&gt;</a>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-  <!-- Contact Section -->
-  <section class="contact">
-    <h2>Contact Me</h2>
-    <p>If you want to collaborate, hire me, or ask a question, feel free to reach out using my contact details below.</p>
-
-    <!-- Contact Information -->
-    <table>
-      <tr><th>Full Name</th><td>Rotondwa Given Machete</td></tr>
-      <tr><th>Email</th><td><a href="mailto:givenrmacs@gmail.com">givenrmacs@gmail.com</a></td></tr>
-      <tr><th>Phone</th><td><a href="tel:+27762558846">076 255 8846</a></td></tr>
-      <tr><th>Address</th><td>10364 Musendo Street, Centurion, Olievenhoutbosch</td></tr>
-    </table>
-
-    <!-- Social Links -->
-    <h3>Connect with Me</h3>
-    <p>
-      <a href="https://www.linkedin.com/in/given-machete-50b7632a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a> | 
-      <a href="https://github.com/Bokang-macs">GitHub</a> | 
-      <a href="https://www.instagram.com/given_machete?igsh=MWVqYjU5OXJqZTE5Yg==">Instagram</a>
-    </p>
+  <section class="section-dark" style="padding: 3.4rem 0;">
+    <div class="container">
+      <p class="hero-eyebrow">// contact.sh</p>
+      <h1 style="font-size: var(--fs-h2);">Let's build something</h1>
+      <p style="color:var(--text-on-ink-muted); max-width:56ch; margin-top:0.8rem;">
+        Want to collaborate, hire me, or just ask a question? Reach out below.
+      </p>
+    </div>
   </section>
 
-  <!-- Footer -->
+  <section>
+    <div class="container" style="max-width: 640px;">
+
+      <!-- CONTACT CARD — a definition list styled like terminal output,
+           replacing the old <table>. Contact details are ONE record, not
+           a grid of comparable rows, so a key:value list is the honest
+           structure — and unlike a table, it can never force the page to
+           scroll sideways on a phone, because nothing here has a fixed
+           minimum width. -->
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="contact-key">name</span>
+          <span class="contact-val">Rotondwa Given Machete</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">email</span>
+          <span class="contact-val"><a href="mailto:givenrmacs@gmail.com">givenrmacs@gmail.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">phone</span>
+          <span class="contact-val"><a href="tel:+27762558846">076 255 8846</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-key">address</span>
+          <span class="contact-val" style="color:var(--text-on-ink);">10364 Musendo Street, Centurion, Olievenhoutbosch</span>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top: 1.8rem;">
+        <a href="mailto:givenrmacs@gmail.com" class="btn btn-primary" style="background:var(--ink); color:var(--accent);">Email Me</a>
+        <a href="tel:+27762558846" class="btn btn-outline" style="border-color:var(--border); color:var(--ink);">Call Me</a>
+      </div>
+
+      <!-- SOCIAL LINKS -->
+      <p class="eyebrow" style="margin-top: 3rem;">// connect</p>
+      <div class="social-row">
+        <a class="social-pill" href="https://www.linkedin.com/in/given-machete-50b7632a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="social-pill" href="https://github.com/Bokang-macs" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-pill" href="https://www.instagram.com/given_machete?igsh=MWVqYjU5OXJqZTE5Yg==" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2026 Rotondwa Machete | All Rights Reserved</p>
+    <p>&copy; 2026 Machete &amp; Makananisa Digital Solutions | All Rights Reserved</p>
   </footer>
 
   <script src="script.js"></script>

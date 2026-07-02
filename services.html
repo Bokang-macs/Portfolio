@@ -4,169 +4,166 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services | Rotondwa Machete</title>
+  <meta name="description" content="Web development, Java applications, C++ programs, and multimedia services from Rotondwa Machete.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header / Navigation -->
- <header>
-  
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-  <!-- Services Section -->
-  <section class="services">
-    <h2>My Services</h2>
-    <p>I offer a range of services in web development, programming, and multimedia. My goal is to provide practical, functional, and visually appealing solutions for clients, students, and small businesses.</p>
-
-    <!-- Web Development -->
-    <div class="service">
-      <h3>Web Development</h3>
-      <p>I create responsive, modern websites tailored to your needs:</p>
-      <ul>
-        <li>Personal & Portfolio Websites</li>
-        <li>Small Business Websites</li>
-        <li>Landing Pages & Promotional Sites</li>
-        <li>Website Redesign & Maintenance</li>
-        <li>Interactive Web Features (JavaScript enhancements)</li>
-      </ul>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">&lt;RM<span>/</span>&gt;</a>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Java Applications -->
-    <div class="service">
-      <h3>Java Applications</h3>
-      <p>I develop desktop applications for personal, academic, and small business use:</p>
-      <ul>
-        <li>Hotel Booking System</li>
-        <li>Unit Converter</li>
-        <li>Foreign Currency Converter</li>
-        <li>Guess Game and Interactive Apps</li>
-        <li>Custom solutions based on client needs</li>
-      </ul>
+  <section class="section-dark" style="padding: 3.4rem 0;">
+    <div class="container">
+      <p class="hero-eyebrow">// services.js</p>
+      <h1 style="font-size: var(--fs-h2);">What I can build for you</h1>
+      <p style="color:var(--text-on-ink-muted); max-width:56ch; margin-top:0.8rem;">
+        Practical, functional, and visually appealing solutions —
+        priced and scoped for students, individuals, and small businesses.
+      </p>
     </div>
-
-    <!-- C++ Applications -->
-    <div class="service">
-      <h3>C++ Applications</h3>
-      <p>I create functional console applications to solve problems and practice programming:</p>
-      <ul>
-        <li>To-Do List Applications</li>
-        <li>Calculators & Utility Programs</li>
-        <li>Phine-City-Zoo Simulation</li>
-        <li>Educational / Practice Projects</li>
-      </ul>
-    </div>
-
-    <!-- Multimedia & Design -->
-    <div class="service">
-      <h3>Multimedia & Design</h3>
-      <p>Basic multimedia solutions for personal or project purposes:</p>
-      <ul>
-        <li>Video editing and production</li>
-        <li>Audio recording and editing</li>
-        <li>Graphics & banners for web or presentations</li>
-        <li>Project visuals and small animations</li>
-      </ul>
-    </div>
-
-    <!-- Small Business Solutions -->
-    <div class="service">
-      <h3>Small Business Solutions</h3>
-      <p>I assist small businesses with digital presence and simple software tools:</p>
-      <ul>
-        <li>Basic websites and landing pages</li>
-        <li>Simple inventory or booking systems</li>
-        <li>Digital marketing advice for social media</li>
-      </ul>
-    </div>
-
-    <!-- Benefits / Why Choose Me -->
-    <div class="benefits">
-      <h3>Why Choose Me?</h3>
-      <ul>
-        <li>Personalized solutions tailored to your needs</li>
-        <li>Affordable and student-friendly rates</li>
-        <li>Fast learner and adaptive to your project requirements</li>
-        <li>Passionate about quality and functionality</li>
-        <li>Open to collaboration and continuous improvement</li>
-      </ul>
-    </div>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-      <h3>What Others Say</h3>
-      <blockquote>
-        "Rotondwa is reliable and creative. His projects are well-built and visually appealing." 
-        <cite>- Classmate / Mentor</cite>
-      </blockquote>
-      <blockquote>
-        "Quick to learn and implement solutions. Excellent student developer!" 
-        <cite>- Project Team Member</cite>
-      </blockquote>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="cta">
-      <h3>Ready to Work Together?</h3>
-      <p>If you want a website, application, or multimedia project built, or just guidance on programming, <a href="contact.html">get in touch</a> today!</p>
-    </section>
-
-    <!-- Service Packages Table -->
-    <h3>Sample Service Packages</h3>
-    <table>
-      <tr>
-        <th>Service</th>
-        <th>Description</th>
-        <th>Estimated Time</th>
-      </tr>
-      <tr>
-        <td>Portfolio Website</td>
-        <td>Responsive personal website with bio, skills, and contact info</td>
-        <td>3-5 days</td>
-      </tr>
-      <tr>
-        <td>Java Desktop App</td>
-        <td>Custom desktop application based on client requirements</td>
-        <td>1-2 weeks</td>
-      </tr>
-      <tr>
-        <td>C++ Console App</td>
-        <td>Functional console programs for problem-solving or utilities</td>
-        <td>3-7 days</td>
-      </tr>
-      <tr>
-        <td>Multimedia Design</td>
-        <td>Basic video/audio editing or graphics for projects</td>
-        <td>1-3 days</td>
-      </tr>
-      <tr>
-        <td>Small Business Web Solution</td>
-        <td>Simple website or online booking/inventory tool</td>
-        <td>5-10 days</td>
-      </tr>
-    </table>
-
   </section>
 
-  <!-- Footer -->
+  <!-- ============ SERVICE CATEGORIES ============ -->
+  <section>
+    <div class="container">
+      <p class="eyebrow">// 01 what I offer</p>
+      <h2>Service categories</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Web Development</h3><span class="tag tag-web">.html</span></div>
+          <p>Responsive, modern websites: personal & portfolio sites, small business sites, landing pages, redesigns, and interactive JS features.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Java Applications</h3><span class="tag tag-java">.java</span></div>
+          <p>Desktop applications for personal, academic, and small business use — booking systems, converters, custom tools.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>C++ Applications</h3><span class="tag tag-cpp">.cpp</span></div>
+          <p>Functional console applications — to-do managers, calculators, utility programs, simulations.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Multimedia &amp; Design</h3><span class="tag tag-media">.mp4</span></div>
+          <p>Video editing, audio recording, graphics and banners for web or presentations.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Small Business Solutions</h3><span class="tag tag-web">.web</span></div>
+          <p>Basic websites and landing pages, simple inventory or booking tools, social media guidance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING — CARDS, NOT A TABLE ============
+       This used to be a <table>. A table is the wrong element when
+       there's nothing to compare column-by-column across many rows —
+       it's really just 5 independent, same-shaped items, which is what
+       a card grid IS. Bonus: on a phone this just restacks to one
+       column, so there's no overflow to fix in the first place. -->
+  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">// 02 packages</p>
+      <h2>Sample packages</h2>
+      <p class="section-intro">Rough starting points — every quote is scoped to what you actually need.</p>
+
+      <div class="grid">
+        <div class="price-card">
+          <span class="time">3–5 days</span>
+          <h3>Portfolio Website</h3>
+          <p>Responsive personal site with bio, skills, and contact info.</p>
+          <a href="contact.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink); margin-top:auto;">Get a quote</a>
+        </div>
+        <div class="price-card">
+          <span class="time">1–2 weeks</span>
+          <h3>Java Desktop App</h3>
+          <p>Custom desktop application built around your requirements.</p>
+          <a href="contact.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink); margin-top:auto;">Get a quote</a>
+        </div>
+        <div class="price-card">
+          <span class="time">3–7 days</span>
+          <h3>C++ Console App</h3>
+          <p>Functional console programs for problem-solving or utilities.</p>
+          <a href="contact.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink); margin-top:auto;">Get a quote</a>
+        </div>
+        <div class="price-card">
+          <span class="time">1–3 days</span>
+          <h3>Multimedia Design</h3>
+          <p>Basic video/audio editing or graphics for your project.</p>
+          <a href="contact.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink); margin-top:auto;">Get a quote</a>
+        </div>
+        <div class="price-card">
+          <span class="time">5–10 days</span>
+          <h3>Small Business Web Solution</h3>
+          <p>Simple website or online booking/inventory tool.</p>
+          <a href="contact.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink); margin-top:auto;">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY CHOOSE ME ============ -->
+  <section>
+    <div class="container">
+      <p class="eyebrow">// 03 why work with me</p>
+      <h2>Why choose me</h2>
+      <div class="grid">
+        <div class="card"><h3>Personalized</h3><p>Solutions tailored to your actual needs, not a generic template.</p></div>
+        <div class="card"><h3>Affordable</h3><p>Student-friendly rates without cutting corners on quality.</p></div>
+        <div class="card"><h3>Fast learner</h3><p>Adaptive to new requirements as your project evolves.</p></div>
+        <div class="card"><h3>Collaborative</h3><p>Open to feedback and continuous improvement throughout the build.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">// feedback</p>
+      <h2>What others say</h2>
+      <div class="grid">
+        <div class="quote-card">
+          <p>"Rotondwa is reliable and creative. His projects are well-built and visually appealing."</p>
+          <cite>— Classmate / Mentor</cite>
+        </div>
+        <div class="quote-card">
+          <p>"Quick to learn and implement solutions. Excellent student developer!"</p>
+          <cite>— Project Team Member</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to work together?</h2>
+        <p>Tell me what you need — a website, an application, or a multimedia project — and I'll get back to you with a scoped quote.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="contact.html" class="btn btn-primary">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2026 Rotondwa Machete | All Rights Reserved</p>
+    <p>&copy; 2026 Machete &amp; Makananisa Digital Solutions | All Rights Reserved</p>
   </footer>
 
   <script src="script.js"></script>
-
 </body>
 </html>

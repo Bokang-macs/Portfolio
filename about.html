@@ -3,92 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me | Rotondwa Machete</title>
+  <title>About | Rotondwa Machete</title>
+  <meta name="description" content="About Rotondwa Machete — background, education, and skills of a Java, C++ and web developer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header / Navigation -->
-<header>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">&lt;RM<span>/</span>&gt;</a>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-  <!-- About Section -->
-  <section class="about">
-    <h2>About Me</h2>
-    <p>Hello! My name is <strong>Rotondwa Given Machete</strong>. I was raised by my mom, who instilled in me the values of hard work, perseverance, and self-belief. Her guidance inspired me to follow my passion for technology and programming.</p>
-
-    <p>I am currently a student at the <strong>University of Mpumalanga</strong>, studying ICT with a focus on Applications Development. I am deeply passionate about web development, programming, and multimedia, and I enjoy building projects that solve problems and create value.</p>
-
-    <!-- Education -->
-    <h3>Education</h3>
-    <ul>
-      <li>St Scholastica Primary School</li>
-      <li>Seshegong Secondary School</li>
-      <li>University of Mpumalanga (Currently studying ICT - Applications Development)</li>
-    </ul>
-
-    <br>
-    <!-- Skills -->
-    <h3>Skills</h3>
-    <ul>
-      <li>Web Development: HTML, CSS</li>
-      <li>Programming: Java, C++</li>
-      <li>Problem Solving & Analytical Thinking</li>
-      <li>Multimedia: Video, Audio, Graphics</li>
-      <li>Project Planning & Execution</li>
-    </ul>
-
-    <br>
-    <!-- Projects -->
-    <h3>Projects I've Built</h3>
-    <ol>
-      <li>Hotel Booking System (Java)</li>
-      <li>Unit Converter (Java)</li>
-      <li>Foreign Currency Converter (Java)</li>
-      <li>Guess Game (Java)</li>
-      <li>To-Do List Application (C++)</li>
-      <li>Phine-City-Zoo (C++)</li>
-      <li>Calculator App (C++)</li>
-      <li>Avengers App (HTML & CSS)</li>
-      <li>Portfolio Website & Web Projects (HTML, CSS)</li>
-      <li>Other learning and practice projects</li>
-    </ol>
-
-    <br>
-    <!-- Hobbies & Interests -->
-    <h3>Hobbies & Interests</h3>
-    <ul>
-      <li> Programming and coding practice</li>
-      <li> Multimedia creation (videos, audio, graphics)</li>
-      <li> Learning new technologies and frameworks</li>
-      <li> Exploring culture and travel</li>
-      <li> Gaming and problem-solving challenges</li>
-    </ul>
-
-    <br>
-    <!-- Personal / Motivational Note -->
-    <h3>Personal Note</h3>
-    <p>I believe that passion, curiosity, and consistent effort are the keys to success. I am committed to learning, building, and growing as a developer so that I can create innovative solutions and contribute positively to the digital world.</p>
+  <!-- Small dark "page header" strip — every inner page gets one of
+       these instead of the full hero, so Home still feels like the
+       one place with the big terminal introduction. -->
+  <section class="section-dark" style="padding: 3.4rem 0;">
+    <div class="container">
+      <p class="hero-eyebrow">// about_me.md</p>
+      <h1 style="font-size: var(--fs-h2);">About Me</h1>
+    </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ============ BIO ============ -->
+  <section>
+    <div class="container" style="max-width: 760px;">
+      <p>Hello! My name is <strong>Rotondwa Given Machete</strong>. I was
+        raised by my mom, who instilled in me the values of hard work,
+        perseverance, and self-belief. Her guidance inspired me to follow
+        my passion for technology and programming.</p>
+      <br>
+      <p>I am currently a student at the <strong>University of Mpumalanga</strong>,
+        studying ICT with a focus on Applications Development. I am
+        deeply passionate about web development, programming, and
+        multimedia, and I enjoy building projects that solve problems and
+        create value.</p>
+      <br>
+      <p>I believe passion, curiosity, and consistent effort are the keys
+        to success. I'm committed to learning, building, and growing as a
+        developer so I can create solutions that make a real difference
+        for the people who use them.</p>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION TIMELINE ============
+       A vertical line connecting dots (defined in style.css section 11)
+       — this IS a real sequence in time, which is the one case where a
+       "connector" structural device is justified rather than decorative. -->
+  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container" style="max-width: 760px;">
+      <p class="eyebrow">// education</p>
+      <h2>Education history</h2>
+      <div class="timeline" style="margin-top: 2rem;">
+        <div class="timeline-item">
+          <span>2026 — present</span>
+          <h3>University of Mpumalanga</h3>
+          <p>Diploma in ICT — Applications Development (currently studying).</p>
+        </div>
+        <div class="timeline-item">
+          <span>Secondary</span>
+          <h3>Seshegong Secondary School</h3>
+        </div>
+        <div class="timeline-item">
+          <span>Primary</span>
+          <h3>St Scholastica Primary School</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS + HOBBIES ============ -->
+  <section>
+    <div class="container">
+      <p class="eyebrow">// skills &amp; interests</p>
+      <h2>What I work with, what I enjoy</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Web Development</h3>
+          <p>HTML, CSS — building and styling responsive layouts like this one.</p>
+        </div>
+        <div class="card">
+          <h3>Programming</h3>
+          <p>Java and C++ — OOP, data structures, console and desktop applications.</p>
+        </div>
+        <div class="card">
+          <h3>Problem Solving</h3>
+          <p>Breaking down requirements into working, testable logic.</p>
+        </div>
+        <div class="card">
+          <h3>Multimedia</h3>
+          <p>Basic video, audio, and graphics work for projects and events.</p>
+        </div>
+        <div class="card">
+          <h3>Project Planning</h3>
+          <p>Scoping a build from idea to finished, working product.</p>
+        </div>
+        <div class="card">
+          <h3>Outside of code</h3>
+          <p>Gaming, exploring new tech and frameworks, culture and travel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Want to see it in practice?</h2>
+        <p>Check out the projects I've actually built, or get in touch to talk about your own.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="projects.html" class="btn btn-primary">View Projects</a>
+          <a href="contact.html" class="btn btn-outline">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2026 Rotondwa Machete | All Rights Reserved</p>
+    <p>&copy; 2026 Machete &amp; Makananisa Digital Solutions | All Rights Reserved</p>
   </footer>
 
   <script src="script.js"></script>

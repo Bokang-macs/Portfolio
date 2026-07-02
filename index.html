@@ -2,123 +2,197 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- width=device-width tells mobile browsers to render at the phone's
+       actual pixel width instead of a fake "desktop" width and zooming
+       out — without this ONE line, nothing else in this file matters,
+       because the browser lies about its own screen size. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rotondwa Machete | Portfolio</title>
-   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Portfolio of Rotondwa Given Machete - Student & Aspiring Developer. Passionate about web development, programming, and digital solutions.">
+  <title>Rotondwa Machete | Software Developer</title>
+  <meta name="description" content="Rotondwa Machete — Java, C++ and web developer building portfolio projects, small business websites, and custom software solutions.">
+
+  <!-- Google Fonts: Space Mono (headings/terminal) + Manrope (body text).
+       preconnect warms up the connection to the font server a little
+       early so the fonts arrive faster — same idea as opening a database
+       connection before you actually need to run a query. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header / Navigation -->
+  <!-- ============ HEADER / NAV ============
+       Same header markup is repeated on every page (about, services,
+       projects, contact) so the site feels like one consistent app, not
+       five disconnected pages — the way every screen in a Java Swing app
+       shares the same menu bar. -->
   <header>
-  <h1>My Portfolio</h1>
+    <div class="header-inner">
+      <a href="assets/IMG .jpg" class="logo">&lt;RM<span>/</span>&gt;</a>
 
-  <!-- Circle menu button -->
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h2>Hello, I'm Rotondwa!</h2>
-    <div class="Intro">
-    <p>Student & Aspiring Developer | Passionate about Web Development and Programming</p>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
       </div>
-    <img src="Images/IMG .jpg" alt="Rotondwa Machete" width="200">
-    <p class="caption"> My professional profile</p>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============
+       Dark "IDE" section. Left column = pitch + call-to-action buttons.
+       Right column = a fake terminal window that "types" a self
+       introduction. This IS the site's signature element — see the
+       long comment block at the top of style.css section 7 for why. -->
+  <section class="hero section-dark">
+    <div class="container hero-grid">
+
+      <div>
+        <p class="hero-eyebrow">// available for freelance & junior dev work</p>
+        <h1>I build software that <span>actually ships.</span></h1>
+        <p>Rotondwa Machete — a Java &amp; C++ developer who also builds
+          clean, responsive websites. Second-year ICT student turning
+          coursework into real, working products for real people.</p>
+        <div class="btn-row">
+          <a href="projects.html" class="btn btn-primary">View Projects</a>
+          <a href="contact.html" class="btn btn-outline">&gt; Hire Me</a>
+        </div>
+      </div>
+
+      <!-- The terminal window. Each .line starts invisible (opacity set
+           by CSS's default + revealed one-by-one by script.js). If
+           JavaScript fails to load for any reason, the lines still exist
+           in the HTML and are readable — the animation is a bonus layer
+           on top of real content, not a replacement for it. -->
+      <div class="terminal" aria-hidden="false">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-filename">whoami.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="line"><span class="prompt">$</span> whoami</div>
+          <div class="line"><span class="output">&gt; Rotondwa Given Machete</span></div>
+          <div class="line"><span class="prompt">$</span> stack --list</div>
+          <div class="line"><span class="output">&gt; Java, C++, HTML, CSS, SQL</span></div>
+          <div class="line"><span class="prompt">$</span> status</div>
+          <div class="line"><span class="output">&gt; Open to freelance &amp; junior roles</span><span class="cursor"></span></div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
-  <!-- About Me / Personal Summary -->
-  <section class="intro">
-    <h2>About Me</h2>
-    <p>I am <strong>Rotondwa Given Machete</strong>, a passionate student learning web development and programming. I enjoy creating digital solutions that are both functional and visually appealing. I am always eager to learn new technologies and challenge myself with exciting projects.</p>
-    <p>My goal is to become a professional developer and use my skills to solve real-world problems and help businesses and individuals grow online.</p>
+  <!-- ============ ABOUT (short) ============ -->
+  <section>
+    <div class="container">
+      <p class="eyebrow">// 01 about</p>
+      <h2>A developer who actually finishes what he starts</h2>
+      <p class="section-intro">
+        I'm a second-year ICT student at the University of Mpumalanga,
+        focused on Applications Development. Every project on this site
+        was built end-to-end by me — not a template, not a tutorial
+        copy-paste. If you want the longer story, education history, and
+        full skill breakdown, it's on the <a href="about.html" style="color:var(--accent-dark); text-decoration:underline;">About page</a>.
+      </p>
+      <a href="about.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink);">Read full bio &rarr;</a>
+    </div>
   </section>
 
-  <!-- Skills Section -->
-  <section class="skills-section">
-    <h2>My Skills</h2>
-    <div class="skills">
-      <div class="skill">
-        <h3>HTML</h3>
-        <p>90%</p>
-      </div>
-      <div class="skill">
-        <h3>CSS</h3>
-        <p>85%</p>
-      </div>
-      <div class="skill">
-        <h3>Java</h3>
-        <p>70%</p>
-      </div>
-      <div class="skill">
-        <h3>C++</h3>
-        <p>65%</p>
+  <!-- ============ SKILLS ============
+       Each skill card carries a file-extension tag (.java / .cpp / .web)
+       so a client can scan the stack in one glance, plus a progress bar
+       whose fill width is set with an inline style attribute — the CSS
+       (in style.css, section 9) defines the SHAPE of the bar once, the
+       HTML below supplies the actual percentage per skill, the same way
+       a constructor parameter fills in a value for a shared class. -->
+  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">// 02 skills</p>
+      <h2>Core stack</h2>
+      <p class="section-intro">The languages and tools I use most, roughly ranked by comfort level.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-head"><h3>Java</h3><span class="tag tag-java">.java</span></div>
+          <p>OOP, exception handling, file I/O, collections.</p>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>C++</h3><span class="tag tag-cpp">.cpp</span></div>
+          <p>Console applications, data structures, memory basics.</p>
+          <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>HTML &amp; CSS</h3><span class="tag tag-web">.html</span></div>
+          <p>Responsive layout, semantic markup, custom design systems.</p>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>SQL</h3><span class="tag tag-web">.sql</span></div>
+          <p>Queries, joins, normalization, ER modelling.</p>
+          <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Hobbies & Interests -->
-  <section class="hobbies">
-    <h2>Hobbies & Interests</h2>
-    <ul>
-      <li>Programming and coding practice</li>
-      <li>Multimedia design (video, audio, graphics)</li>
-      <li>Learning new technologies</li>
-      <li>Exploring travel and culture</li>
-      <li>Gaming and problem-solving</li>
-    </ul>
+  <!-- ============ HIGHLIGHTS ============ -->
+  <section>
+    <div class="container">
+      <p class="eyebrow">// 03 highlights</p>
+      <h2>What I've shipped so far</h2>
+      <div class="grid">
+        <div class="card"><h3>Hotel management system</h3><p>Multi-class Java application with file-backed persistence and input validation.</p></div>
+        <div class="card"><h3>Currency &amp; unit converters</h3><p>Java console tools handling real-world conversion logic.</p></div>
+        <div class="card"><h3>C++ console apps</h3><p>To-do list manager and a zoo-simulation program using core data structures.</p></div>
+        <div class="card"><h3>This portfolio</h3><p>Hand-built HTML/CSS design system — the page you're looking at right now.</p></div>
+      </div>
+    </div>
   </section>
 
-  <!-- Achievements / Highlights -->
-  <section class="achievements">
-    <h2>Achievements</h2>
-    <ol>
-      <li>Completed personal portfolio website project using HTML & CSS</li>
-      <li>Built a calculator app using Java</li>
-      <li>Developed a student management system using C++</li>
-      <li>Created multimedia projects for school and community events</li>
-      <li>Active in learning and applying new programming concepts independently</li>
-    </ol>
+  <!-- ============ TESTIMONIALS ============ -->
+  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">// 04 feedback</p>
+      <h2>What people I've worked with say</h2>
+      <div class="grid">
+        <div class="quote-card">
+          <p>"Rotondwa is creative, hardworking, and dedicated. His coding projects are impressive for his experience level."</p>
+          <cite>— Classmate / Mentor</cite>
+        </div>
+        <div class="quote-card">
+          <p>"Very reliable, fast learner, and passionate about technology."</p>
+          <cite>— Project Team Member</cite>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Testimonials / Peer Feedback -->
-  <section class="testimonials">
-    <h2>Feedback from Peers</h2>
-    <blockquote>
-      "Rotondwa is creative, hardworking, and dedicated. His coding projects are impressive for his experience level."
-      <cite>- Classmate / Mentor</cite>
-    </blockquote>
-    <blockquote>
-      "Very reliable, fast learner, and passionate about technology."
-      <cite>- Project Team Member</cite>
-    </blockquote>
+  <!-- ============ CTA ============ -->
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Have a project in mind?</h2>
+        <p>Whether it's a Java application, a small business website, or a full portfolio build — let's talk about it.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="contact.html" class="btn btn-primary">Get in touch</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Contact Teaser -->
-  <section class="contact-teaser">
-    <h2>Get in Touch</h2>
-    <p>If you want to collaborate, learn from me, or hire me for a project, feel free to reach out by visiting the <a href="contact.html">Contact page</a>.</p>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Rotondwa Machete | All Rights Reserved</p>
+    <p>&copy; 2026 Machete &amp; Makananisa Digital Solutions | All Rights Reserved</p>
   </footer>
 
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>

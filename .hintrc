@@ -3,10 +3,13 @@
     "development"
   ],
   "hints": {
-    "axe/parsing": [
+    "no-inline-styles": "off",
+    "compat-api/css": [
       "default",
       {
-        "marquee": "off"
+        "ignore": [
+          "-webkit-text-size-adjust"
+        ]
       }
     ]
   }
