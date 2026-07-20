@@ -312,6 +312,8 @@ header {
    .terminal > .terminal-bar (3 dots + filename) + .terminal-body (lines)
    This is the single "signature" visual of the whole site.
    ---------------------------------------------------------------------- */
+
+
 .hero {
   padding-top: 4.5rem;
   padding-bottom: 5rem;
@@ -433,6 +435,10 @@ header {
 .tag-cpp   { color: #1D4ED8; background: #DBEAFE; border-color: #BFDBFE; }
 .tag-web   { color: #047857; background: #D1FAE5; border-color: #A7F3D0; }
 .tag-media { color: #7C3AED; background: #EDE9FE; border-color: #DDD6FE; }
+.tag-python { color: #A16207; background: #FEF9C3; border-color: #FEF08A; }
+.tag-js     { color: #C2410C; background: #FFEDD5; border-color: #FED7AA; }
+.tag-sql    { color: #0E7490; background: #CFFAFE; border-color: #A5F3FC; }
+.tag-design { color: #BE185D; background: #FCE7F3; border-color: #FBCFE8; }
 
 /* ----------------------------------------------------------------------
    9. CARD GRIDS (skills / services / projects)
@@ -622,6 +628,9 @@ header {
 
 .social-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
 .social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   border: 1px solid var(--border);
   border-radius: 99px;
   padding: 0.6rem 1.2rem;
@@ -629,6 +638,7 @@ header {
   font-size: 0.9rem;
   transition: 0.2s;
 }
+.social-pill svg { width: 16px; height: 16px; flex-shrink: 0; }
 .social-pill:hover { border-color: var(--accent); color: var(--accent-dark); background: rgba(52,211,153,0.08); }
 
 /* ----------------------------------------------------------------------
@@ -654,6 +664,36 @@ footer {
   padding: 2.6rem 6%;
   font-size: 0.9rem;
   border-top: 1px solid var(--border-ink);
+}
+
+/* ----------------------------------------------------------------------
+   16b. FOOTER SOCIAL ICONS
+   Small circular icon links, sitting above the copyright line on every
+   page — matches the .social-pill treatment used on Contact, just
+   compressed to icon-only since footer real estate is tight.
+   ---------------------------------------------------------------------- */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-ink);
+  color: var(--text-on-ink-muted);
+  transition: 0.2s;
+}
+.footer-social-icon svg { width: 17px; height: 17px; }
+.footer-social-icon:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
 }
 
 /* ----------------------------------------------------------------------

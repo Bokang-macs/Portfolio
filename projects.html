@@ -51,6 +51,10 @@
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="java">Java</button>
         <button class="filter-btn" data-filter="cpp">C++</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+        <button class="filter-btn" data-filter="js">JavaScript</button>
+        <button class="filter-btn" data-filter="sql">SQL / Database</button>
+        <button class="filter-btn" data-filter="design">Software Design</button>
         <button class="filter-btn" data-filter="web">Web</button>
         <button class="filter-btn" data-filter="media">Multimedia</button>
       </div>
@@ -74,10 +78,18 @@
           <div class="card-head"><h3>Guess Game</h3><span class="tag tag-java">.java</span></div>
           <p>Interactive number guessing game with score tracking.</p>
         </div>
+        <div class="card project-card" data-category="java">
+          <div class="card-head"><h3>BMI Calculator</h3><span class="tag tag-java">.java</span></div>
+          <p>Takes height and weight, calculates BMI, and classifies the result against standard health bands.</p>
+        </div>
+        <div class="card project-card" data-category="java">
+          <div class="card-head"><h3>To-Do List (Java)</h3><span class="tag tag-java">.java</span></div>
+          <p>Task manager with add/complete/delete, backed by file persistence between runs.</p>
+        </div>
 
         <!-- C++ -->
         <div class="card project-card" data-category="cpp">
-          <div class="card-head"><h3>To-Do List</h3><span class="tag tag-cpp">.cpp</span></div>
+          <div class="card-head"><h3>To-Do List (C++)</h3><span class="tag tag-cpp">.cpp</span></div>
           <p>Console application to manage tasks and priorities.</p>
         </div>
         <div class="card project-card" data-category="cpp">
@@ -89,6 +101,82 @@
           <p>Console calculator with core arithmetic and functions.</p>
         </div>
 
+        <!-- PYTHON -->
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Contact Search</h3><span class="tag tag-python">.py</span></div>
+          <p>Stores and searches contacts by name or number — built around dictionaries and simple file storage.</p>
+        </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Calculator (Python)</h3><span class="tag tag-python">.py</span></div>
+          <p>Console calculator handling core arithmetic with input validation.</p>
+        </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Hotel Management (Python)</h3><span class="tag tag-python">.py</span></div>
+          <p>A Python take on hotel bookings and room management, alongside the Java version.</p>
+        </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>To-Do List (Python)</h3><span class="tag tag-python">.py</span></div>
+          <p>Task manager rebuilt in Python to compare against the Java and C++ versions.</p>
+        </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Library Management System</h3><span class="tag tag-python">.py</span></div>
+          <p>Planned: tracks books, members and due dates, with basic borrow/return logic.</p>
+        </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Password Generator</h3><span class="tag tag-python">.py</span></div>
+          <p>Planned: generates strong random passwords with configurable length and character rules.</p>
+        </div>
+
+        <!-- JAVASCRIPT -->
+        <div class="card project-card" data-category="js">
+          <div class="card-head"><h3>Login Page</h3><span class="tag tag-js">.js</span></div>
+          <p>Front-end login form with input validation and basic auth-flow logic.</p>
+        </div>
+        <div class="card project-card" data-category="js">
+          <div class="card-head"><h3>Calculator (JavaScript)</h3><span class="tag tag-js">.js</span></div>
+          <p>Browser-based calculator built with vanilla JS and DOM manipulation.</p>
+        </div>
+        <div class="card project-card" data-category="js">
+          <div class="card-head"><h3>Weather App</h3><span class="tag tag-js">.js</span></div>
+          <p>Planned: fetches live weather data from a public API and displays it dynamically.</p>
+        </div>
+        <div class="card project-card" data-category="js">
+          <div class="card-head"><h3>Quiz App</h3><span class="tag tag-js">.js</span></div>
+          <p>Planned: multi-question quiz with score tracking and instant feedback per answer.</p>
+        </div>
+
+        <!-- SQL / DATABASE -->
+        <div class="card project-card" data-category="sql">
+          <div class="card-head"><h3>Basic Banking System</h3><span class="tag tag-sql">.sql</span></div>
+          <p>Account creation, deposits, withdrawals and balance history on a proper relational schema.</p>
+        </div>
+        <div class="card project-card" data-category="sql">
+          <div class="card-head"><h3>Student Management System</h3><span class="tag tag-sql">.sql</span></div>
+          <p>Tracks students, courses and grades with a normalized schema and real relationships.</p>
+        </div>
+        <div class="card project-card" data-category="sql">
+          <div class="card-head"><h3>Payment Management System</h3><span class="tag tag-sql">.sql</span></div>
+          <p>Logs transactions against accounts/invoices, built for reconciliation and reporting queries.</p>
+        </div>
+        <div class="card project-card" data-category="sql">
+          <div class="card-head"><h3>Library Database</h3><span class="tag tag-sql">.sql</span></div>
+          <p>Planned: relational schema for books, members, loans and fines.</p>
+        </div>
+        <div class="card project-card" data-category="sql">
+          <div class="card-head"><h3>Inventory &amp; Sales Database</h3><span class="tag tag-sql">.sql</span></div>
+          <p>Planned: tracks stock levels, sales records and reorder points across a normalized schema.</p>
+        </div>
+        <div class="card project-card" data-category="sql">
+          <div class="card-head"><h3>Employee Payroll Database</h3><span class="tag tag-sql">.sql</span></div>
+          <p>Planned: employee records, hours worked and payroll calculations, queryable for reporting.</p>
+        </div>
+
+        <!-- SOFTWARE DESIGN & ARCHITECTURE -->
+        <div class="card project-card" data-category="design">
+          <div class="card-head"><h3>Petrol Station Management System</h3><span class="tag tag-design">.design</span></div>
+          <p>School software design &amp; architecture project — full system design (UML, requirements, data flow) for fuel, stock and till management, before implementation.</p>
+        </div>
+
         <!-- WEB -->
         <div class="card project-card" data-category="web">
           <div class="card-head"><h3>Avengers App</h3><span class="tag tag-web">.html</span></div>
@@ -97,6 +185,15 @@
         <div class="card project-card" data-category="web">
           <div class="card-head"><h3>This Portfolio</h3><span class="tag tag-web">.css</span></div>
           <p>Hand-built responsive portfolio site — the one you're on now.</p>
+        </div>
+        <div class="card project-card" data-category="web">
+          <div class="card-head"><h3>Deployed Web Build</h3><span class="tag tag-web">.live</span></div>
+          <p>A live, deployed site — see it running in production.</p>
+          <a href="https://joyful-macaron-49bbd0.netlify.app" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:var(--border); color:var(--ink); margin-top:0.8rem;">View Live &rarr;</a>
+        </div>
+        <div class="card project-card" data-category="web">
+          <div class="card-head"><h3>Mvumu Empire Holdings</h3><span class="tag tag-web">.web</span></div>
+          <p>Business website built for Mvumu Empire Holdings.</p>
         </div>
 
         <!-- MULTIMEDIA -->
@@ -126,6 +223,12 @@
   </section>
 
   <footer>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61555500560279" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.9.2-1.5 1.6-1.5H16V4.2C15.7 4.1 14.7 4 13.5 4c-2.4 0-4 1.5-4 4.2V10.5H7v3h2.5V21h4z"/></svg></a>
+      <a href="https://www.instagram.com/given_machete?igsh=MWVqYjU5OXJqZTE5Yg==" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="4"></rect><circle cx="12" cy="12" r="3.5"></circle><circle cx="17" cy="7" r="1"></circle></svg></a>
+      <a href="https://github.com/Bokang-macs" target="_blank" rel="noopener" aria-label="GitHub" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48 0-.24-.01-1.02-.01-1.86-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.32 9.32 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0022 12.26C22 6.58 17.52 2 12 2z"/></svg></a>
+      <a href="https://www.linkedin.com/in/given-machete-50b7632a9?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3.5a2 2 0 100 4 2 2 0 000-4zM21 21v-6.9c0-3.68-1.96-5.39-4.58-5.39-2.11 0-3.06 1.16-3.58 1.98v-1.7h-3.38c.04.9 0 12 0 12h3.38v-6.7c0-.36.03-.72.13-.98.29-.72.95-1.47 2.05-1.47 1.45 0 2.03 1.1 2.03 2.72V21H21z"/></svg></a>
+    </div>
     <p>&copy; 2026 Machete &amp; Makananisa Digital Solutions | All Rights Reserved</p>
   </footer>
 
