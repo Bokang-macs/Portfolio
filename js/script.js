@@ -1,8 +1,10 @@
-/* ======================================================================
-   script.js — three independent features on this site:
+/* =============================================================================
+   script.js — Portfolio Website JavaScript
+   Three independent features on this site:
    1. Mobile nav toggle   (runs on every page)
    2. Hero terminal typing effect  (index.html only)
    3. Project filter buttons       (projects.html only)
+   4. Scroll reveal animation      (all pages)
 
    Each block below starts by checking whether its target element exists
    on the current page (`if (toggle) { ... }`). This is the same reason
@@ -10,11 +12,13 @@
    without the check, `document.getElementById(...)` returns null on
    pages that don't have that element, and calling `.addEventListener`
    on null throws and stops the WHOLE script, breaking every page.
-   ====================================================================== */
+   ============================================================================= */
 
-/* ----------------------------------------------------------------------
+/* ==========================================================================
    1. MOBILE NAV TOGGLE
-   ---------------------------------------------------------------------- */
+   Handles the hamburger menu button click to show/hide the navigation
+   on mobile devices. Also closes the menu when a link is clicked.
+   ========================================================================== */
 const toggle = document.getElementById("menu-toggle");
 const nav = document.getElementById("nav");
 
@@ -36,14 +40,14 @@ if (toggle && nav) {
   });
 }
 
-/* ----------------------------------------------------------------------
+/* ==========================================================================
    2. HERO TERMINAL TYPING EFFECT (index.html)
    The hero terminal has lines pre-written in the HTML but hidden
    (opacity: 0 via the "line" class start-state), and this script reveals
    them one at a time with a short delay — like a loading loop, but for
    visual reveal instead of data. If the visitor has "reduce motion"
    turned on at the OS level, we skip straight to showing everything.
-   ---------------------------------------------------------------------- */
+   ========================================================================== */
 const terminalLines = document.querySelectorAll(".terminal-body .line");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -68,7 +72,7 @@ if (terminalLines.length > 0) {
   }
 }
 
-/* ----------------------------------------------------------------------
+/* ==========================================================================
    3. PROJECT FILTER (projects.html)
    Every filter button carries a `data-filter` attribute (e.g. "java",
    "cpp", "web", "all"). Every project card carries a `data-category`
@@ -83,7 +87,7 @@ if (terminalLines.length > 0) {
          p.hide();
        }
      }
-   ---------------------------------------------------------------------- */
+   ========================================================================== */
 const filterButtons = document.querySelectorAll(".filter-btn");
 const projectCards = document.querySelectorAll(".project-card");
 
@@ -104,3 +108,70 @@ if (filterButtons.length > 0 && projectCards.length > 0) {
     });
   });
 }
+
+/* ==========================================================================
+   4. SCROLL REVEAL ANIMATION
+   Uses IntersectionObserver to detect when elements enter the viewport
+   and adds a "revealed" class to trigger CSS animations. This creates
+   a smooth "fade in as you scroll" effect on all pages.
+   ========================================================================== */
+// Select all sections that should animate on scroll
+const revealElements = document.querySelectorAll("section > .container");
+
+if (revealElements.length > 0 && !prefersReducedMotion) {
+  // Create an IntersectionObserver that watches for elements entering viewport
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Add the revealed class to trigger CSS animation
+        entry.target.classList.add("revealed");
+        // Stop observing this element once it's revealed (one-time animation)
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    // Trigger when 10% of the element is visible
+    threshold: 0.1,
+    // Start triggering slightly before element enters viewport
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  // Observe each container element
+  revealElements.forEach((el) => {
+    el.classList.add("reveal");
+    revealObserver.observe(el);
+  });
+}
+
+/* ==========================================================================
+   5. SMOOTH SCROLL FOR ANCHOR LINKS
+   Ensures all anchor links scroll smoothly to their targets.
+   ========================================================================== */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+/* ==========================================================================
+   6. ACTIVE NAV LINK HIGHLIGHTING
+   Automatically highlights the current page's nav link based on URL.
+   ========================================================================== */
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+const navLinks = document.querySelectorAll('.nav a');
+
+navLinks.forEach(link => {
+  const linkPage = link.getAttribute('href');
+  if (linkPage === currentPage) {
+    link.classList.add('active');
+  } else {
+    link.classList.remove('active');
+  }
+});

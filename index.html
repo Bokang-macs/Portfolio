@@ -1,14 +1,27 @@
+<!-- =============================================================================
+  FILE: index.html
+  PAGE: Home / Landing Page
+  DESCRIPTION: Main entry point of the portfolio website. Contains the hero section
+               with a terminal animation, about summary, skills grid with progress
+               bars, featured live projects, project highlights, testimonials,
+               and a call-to-action banner.
+  ============================================================================= -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!-- Character encoding and responsive viewport meta tags -->
   <meta charset="UTF-8">
   <!-- width=device-width tells mobile browsers to render at the phone's
        actual pixel width instead of a fake "desktop" width and zooming
        out — without this ONE line, nothing else in this file matters,
        because the browser lies about its own screen size. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Page title and meta description for SEO -->
   <title>Rotondwa Machete | Software Developer</title>
-  <meta name="description" content="Rotondwa Machete — Java, C++ and web developer building portfolio projects, small business websites, and custom software solutions.">
+  <meta name="description"
+    content="Rotondwa Machete — Java, C++ and web developer building portfolio projects, small business websites, and custom software solutions.">
 
   <!-- Google Fonts: Space Mono (headings/terminal) + Manrope (body text).
        preconnect warms up the connection to the font server a little
@@ -16,25 +29,35 @@
        connection before you actually need to run a query. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="images/Developer.jpeg">
+  <!-- Link to the external stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  <!-- ============ HEADER / NAV ============
+  <!-- =========================================================================
+       HEADER / NAVIGATION
        Same header markup is repeated on every page (about, services,
        projects, contact) so the site feels like one consistent app, not
        five disconnected pages — the way every screen in a Java Swing app
-       shares the same menu bar. -->
+       shares the same menu bar.
+       ========================================================================= -->
   <header>
     <div class="header-inner">
+      <!-- Logo linking back to home page -->
       <a href="index.html" class="logo">&lt;RM<span>/</span>&gt;</a>
 
+      <!-- Mobile hamburger menu toggle button (hidden on desktop) -->
       <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
       </div>
 
+      <!-- Navigation links -->
       <nav class="nav" id="nav">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
@@ -45,13 +68,18 @@
     </div>
   </header>
 
-  <!-- ============ HERO ============
+  <!-- =========================================================================
+       HERO SECTION
        Dark "IDE" section. Left column = pitch + call-to-action buttons.
        Right column = a fake terminal window that "types" a self
-       introduction. This IS the site's signature element — see the
-       long comment block at the top of style.css section 7 for why. -->
+       introduction. This IS the site's signature element.
+       ========================================================================= -->
   <section class="hero section-dark">
     <div class="container hero-grid">
+
+      <!-- Left column: headline, description, and CTA buttons -->
+      <!-- Profile image -->
+      <img src="images/Developer.jpeg" alt="Rotondwa Machete" class="hero-profile-img" style="margin-bottom: 1.5rem;">
 
       <div>
         <p class="hero-eyebrow">// available for freelance & junior dev work</p>
@@ -65,7 +93,8 @@
         </div>
       </div>
 
-      <!-- The terminal window. Each .line starts invisible (opacity set
+      <!-- Right column: Terminal window animation
+           The terminal window. Each .line starts invisible (opacity set
            by CSS's default + revealed one-by-one by script.js). If
            JavaScript fails to load for any reason, the lines still exist
            in the HTML and are readable — the animation is a bonus layer
@@ -81,16 +110,21 @@
           <div class="line"><span class="prompt">$</span> whoami</div>
           <div class="line"><span class="output">&gt; Rotondwa Given Machete</span></div>
           <div class="line"><span class="prompt">$</span> stack --list</div>
-          <div class="line"><span class="output">&gt; Java, JS, Python, C++, HTML, CSS, SQL, System Architecture, System Design, Software Design</span></div>
+          <div class="line"><span class="output">&gt; Java, JS, Python, C++, HTML, CSS, SQL, System Architecture, System
+              Design, Software Design</span></div>
           <div class="line"><span class="prompt">$</span> status</div>
-          <div class="line"><span class="output">&gt; Open to freelance &amp; junior roles</span><span class="cursor"></span></div>
+          <div class="line"><span class="output">&gt; Open to freelance &amp; junior roles</span><span
+              class="cursor"></span></div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ============ ABOUT (short) ============ -->
+  <!-- =========================================================================
+       ABOUT SECTION (short version)
+       Brief introduction with link to full About page.
+       ========================================================================= -->
   <section>
     <div class="container">
       <p class="eyebrow">// 01 about</p>
@@ -100,87 +134,150 @@
         focused on Applications Development. Every project on this site
         was built end-to-end by me — not a template, not a tutorial
         copy-paste. If you want the longer story, education history, and
-        full skill breakdown, it's on the <a href="about.html" style="color:var(--accent-dark); text-decoration:underline;">About page</a>.
+        full skill breakdown, it's on the <a href="about.html"
+          style="color:var(--accent-dark); text-decoration:underline;">About page</a>.
       </p>
-      <a href="about.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink);">Read full bio &rarr;</a>
+      <a href="about.html" class="btn btn-outline" style="border-color:var(--border); color:var(--ink);">Read full bio
+        &rarr;</a>
     </div>
   </section>
 
-  <!-- ============ SKILLS ============
+  <!-- =========================================================================
+       SKILLS SECTION
        Each skill card carries a file-extension tag (.java / .cpp / .web)
        so a client can scan the stack in one glance, plus a progress bar
        whose fill width is set with an inline style attribute — the CSS
-       (in style.css, section 9) defines the SHAPE of the bar once, the
-       HTML below supplies the actual percentage per skill, the same way
-       a constructor parameter fills in a value for a shared class. -->
-  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+       defines the SHAPE of the bar once, the HTML below supplies the
+       actual percentage per skill, the same way a constructor parameter
+       fills in a value for a shared class.
+       ========================================================================= -->
+  <section
+    style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
       <p class="eyebrow">// 02 skills</p>
       <h2>Core stack</h2>
       <p class="section-intro">The languages and tools I use most, roughly ranked by comfort level.</p>
 
       <div class="grid">
+        <!-- Java skill card -->
         <div class="card">
-          <div class="card-head"><h3>Java</h3><span class="tag tag-java">.java</span></div>
+          <div class="card-head">
+            <h3>Java</h3><span class="tag tag-java">.java</span>
+          </div>
           <p>OOP, exception handling, file I/O, collections,and more.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:80%"></div>
+          </div>
         </div>
+        <!-- C++ skill card -->
         <div class="card">
-          <div class="card-head"><h3>C++</h3><span class="tag tag-cpp">.cpp</span></div>
+          <div class="card-head">
+            <h3>C++</h3><span class="tag tag-cpp">.cpp</span>
+          </div>
           <p>Console applications, data structures, memory basics.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:70%"></div>
+          </div>
         </div>
+        <!-- HTML & CSS skill card -->
         <div class="card">
-          <div class="card-head"><h3>HTML &amp; CSS</h3><span class="tag tag-web">.html</span></div>
+          <div class="card-head">
+            <h3>HTML &amp; CSS</h3><span class="tag tag-web">.html</span>
+          </div>
           <p>Responsive layout, semantic markup, custom design systems.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:90%"></div>
+          </div>
         </div>
+        <!-- JavaScript skill card -->
         <div class="card">
-          <div class="card-head"><h3>JavaScript</h3><span class="tag tag-js">.js</span></div>
+          <div class="card-head">
+            <h3>JavaScript</h3><span class="tag tag-js">.js</span>
+          </div>
           <p>DOM manipulation, events, functions, arrays, objects, fetch API.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:65%"></div>
+          </div>
         </div>
+        <!-- SQL skill card -->
         <div class="card">
-          <div class="card-head"><h3>SQL</h3><span class="tag tag-sql">.sql</span></div>
+          <div class="card-head">
+            <h3>SQL</h3><span class="tag tag-sql">.sql</span>
+          </div>
           <p>Queries, joins, normalization, ER modelling.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:60%"></div>
+          </div>
         </div>
+        <!-- Python skill card -->
         <div class="card">
-          <div class="card-head"><h3>Python</h3><span class="tag tag-python">.py</span></div>
+          <div class="card-head">
+            <h3>Python</h3><span class="tag tag-python">.py</span>
+          </div>
           <p>Variables, loops, functions, lists, dictionaries, input/output, and many more.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:75%"></div>
+          </div>
         </div>
+        <!-- Git & GitHub skill card -->
         <div class="card">
-          <div class="card-head"><h3>Git & GitHub</h3><span class="tag tag-web">.git</span></div>
+          <div class="card-head">
+            <h3>Git & GitHub</h3><span class="tag tag-web">.git</span>
+          </div>
           <p>Version control, branching, pull requests, collaboration.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:75%"></div>
+          </div>
         </div>
+        <!-- System Design skill card -->
         <div class="card">
-          <div class="card-head"><h3>System Design</h3><span class="tag tag-web">.software_design</span></div>
+          <div class="card-head">
+            <h3>System Design</h3><span class="tag tag-web">.software_design</span>
+          </div>
           <p>Scalability, load balancing, caching, microservices, APIs.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:90%"></div>
+          </div>
         </div>
+        <!-- System Architecture skill card -->
         <div class="card">
-          <div class="card-head"><h3>System Architecture</h3><span class="tag tag-web">.system_architecture</span></div>
+          <div class="card-head">
+            <h3>System Architecture</h3><span class="tag tag-web">.system_architecture</span>
+          </div>
           <p>Distributed systems, design patterns, fault tolerance and more.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:80%"></div>
+          </div>
         </div>
+        <!-- Database Design skill card -->
         <div class="card">
-          <div class="card-head"><h3>Database Design</h3><span class="tag tag-web">.database_design</span></div>
+          <div class="card-head">
+            <h3>Database Design</h3><span class="tag tag-web">.database_design</span>
+          </div>
           <p>ER modelling, normalization, SQL, indexing, relationships.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:90%"></div>
+          </div>
         </div>
+        <!-- Software Design skill card -->
         <div class="card">
-          <div class="card-head"><h3>Software Design</h3><span class="tag tag-design">.design</span></div>
-          <p>OOP design patterns, UML, requirements analysis — turning a problem statement into a working architecture before a line of code is written.</p>
-          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+          <div class="card-head">
+            <h3>Software Design</h3><span class="tag tag-design">.design</span>
+          </div>
+          <p>OOP design patterns, UML, requirements analysis — turning a problem statement into a working architecture
+            before a line of code is written.</p>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:80%"></div>
+          </div>
         </div>
+        <!-- JavaFX skill card -->
         <div class="card">
           <div class="card-head">
             <h3>JavaFX</h3>
             <span class="tag tag-java">.javafx</span>
           </div>
-          <p>Desktop application development using JavaFX, including FXML, Scene Builder, event handling, layouts, CSS styling, controllers, and building modern graphical user interfaces with the MVC architecture.</p>
+          <p>Desktop application development using JavaFX, including FXML, Scene Builder, event handling, layouts, CSS
+            styling, controllers, and building modern graphical user interfaces with the MVC architecture.</p>
           <div class="bar-track">
             <div class="bar-fill" style="width:45%"></div>
           </div>
@@ -189,25 +286,31 @@
     </div>
   </section>
 
-  <!-- ============ FEATURED LIVE PROJECTS ============
+  <!-- =========================================================================
+       FEATURED LIVE PROJECTS SECTION
        Real, deployed builds — as opposed to the coursework/console
        projects above. Link opens in a new tab (target="_blank") since
-       clicking it takes the visitor off this site entirely. -->
-  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+       clicking it takes the visitor off this site entirely.
+       ========================================================================= -->
+  <section
+    style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
       <p class="eyebrow">// 03 live &amp; deployed</p>
       <h2>Real projects, actually live</h2>
-      <p class="section-intro">Not just coursework — sites built end-to-end and shipped for real use. More going up as they're finished.</p>
+      <p class="section-intro">Not just coursework — sites built end-to-end and shipped for real use. More going up as
+        they're finished.</p>
       <div class="grid">
+        <!-- Mvumu Empire Holdings project -->
         <div class="card">
           <div class="card-head">
-            <a href="https://joyful-macaron-49bbd0.netlify.app" target="_blank" rel="noopener" class="card-link">
+            <a href="https://mvumu-empire-holdings.netlify.app" target="_blank" rel="noopener" class="card-link">
               <h3>Mvumu Empire Holdings</h3>
               <span class="tag tag-web">.web</span>
             </a>
           </div>
           <p>Business website built for Mvumu Empire Holdings.</p>
         </div>
+        <!-- Refro project -->
         <div class="card">
           <div class="card-head">
             <a href="https://refro.co.za" target="_blank" rel="noopener" class="card-link">
@@ -215,17 +318,21 @@
               <span class="tag tag-web">.web</span>
             </a>
           </div>
-          <p>Professional business website developed for Refro, showcasing the company's services with a modern, responsive, and user-friendly design.</p>
+          <p>Professional business website developed for Refro, showcasing the company's services with a modern,
+            responsive, and user-friendly design.</p>
         </div>
+        <!-- Machete & Makananisa Digital Solutions project -->
         <div class="card">
           <div class="card-head">
-            <a href="https://helpful-bublanina-773a56.netlify.app" target="_blank" rel="noopener" class="card-link">
+            <a href="https://mmdigitalsolutions.netlify.app" target="_blank" rel="noopener" class="card-link">
               <h3>Machete &amp; Makananisa Digital Solutions</h3>
               <span class="tag tag-web">.web</span>
             </a>
           </div>
-          <p>Modern digital agency website highlighting web development, innovative digital solutions, and professional online services for businesses.</p>
+          <p>Modern digital agency website highlighting web development, innovative digital solutions, and professional
+            online services for businesses.</p>
         </div>
+        <!-- Khutsos project -->
         <div class="card">
           <div class="card-head">
             <a href="https://khutsos.netlify.app" target="_blank" rel="noopener" class="card-link">
@@ -233,40 +340,82 @@
               <span class="tag tag-web">.web</span>
             </a>
           </div>
-          <p>Professional business website developed for Khutsos, featuring a modern, responsive design that showcases the company's services and provides an engaging experience across all devices.</p>
+          <p>Professional business website developed for Khutsos, featuring a modern, responsive design that showcases
+            the company's services and provides an engaging experience across all devices.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ HIGHLIGHTS ============ -->
+  <!-- =========================================================================
+       HIGHLIGHTS SECTION
+       Mini projects shipped so far, both backend and frontend.
+       ========================================================================= -->
   <section>
     <div class="container">
       <p class="eyebrow">// 04 highlights</p>
       <h2>Some of the mini projects I've shipped so far, both backend and frontend</h2>
       <div class="grid">
-        <div class="card"><h3>Hotel Management System</h3><p>Multi-class Java application with file-backed persistence and input validation.</p></div>
-        <div class="card"><h3>Currency &amp; Unit Converters</h3><p>Java console tools handling real-world conversion logic.</p></div>
-        <div class="card"><h3>C++ Console Apps</h3><p>To-do list manager and a zoo-simulation program using core data structures.</p></div>
-        <div class="card"><h3>To-Do App — C++, Java &amp; Python</h3><p>The same task manager rebuilt three times across three languages, to compare how each one handles state, I/O and structure.</p></div>
-        <div class="card"><h3>BMI Calculator (Java)</h3><p>Takes height and weight, calculates BMI, and classifies the result against standard health bands.</p></div>
-        <div class="card"><h3>Basic Banking System (Database)</h3><p>Account creation, deposits, withdrawals and balance history, backed by a proper relational schema instead of flat files.</p></div>
-        <div class="card"><h3>Student Management System (Database)</h3><p>Tracks students, courses and grades with a normalized schema built around real one-to-many relationships.</p></div>
-        <div class="card"><h3>Payment Management System (Database)</h3><p>Logs transactions against accounts/invoices, with queries built for reconciliation and reporting.</p></div>
-        <div class="card"><h3>Petrol Station Management System</h3><p>A school software design &amp; architecture project — full system design for fuel, stock and till management before any code was written.</p></div>
-        <div class="card"><h3>This Portfolio</h3><p>Hand-built HTML/CSS design system — the page you're looking at right now.</p></div>
+        <div class="card">
+          <h3>Hotel Management System</h3>
+          <p>Multi-class Java application with file-backed persistence and input validation.</p>
+        </div>
+        <div class="card">
+          <h3>Currency &amp; Unit Converters</h3>
+          <p>Java console tools handling real-world conversion logic.</p>
+        </div>
+        <div class="card">
+          <h3>C++ Console Apps</h3>
+          <p>To-do list manager and a zoo-simulation program using core data structures.</p>
+        </div>
+        <div class="card">
+          <h3>To-Do App — C++, Java &amp; Python</h3>
+          <p>The same task manager rebuilt three times across three languages, to compare how each one handles state,
+            I/O and structure.</p>
+        </div>
+        <div class="card">
+          <h3>BMI Calculator (Java)</h3>
+          <p>Takes height and weight, calculates BMI, and classifies the result against standard health bands.</p>
+        </div>
+        <div class="card">
+          <h3>Basic Banking System (Database)</h3>
+          <p>Account creation, deposits, withdrawals and balance history, backed by a proper relational schema instead
+            of flat files.</p>
+        </div>
+        <div class="card">
+          <h3>Student Management System (Database)</h3>
+          <p>Tracks students, courses and grades with a normalized schema built around real one-to-many relationships.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Payment Management System (Database)</h3>
+          <p>Logs transactions against accounts/invoices, with queries built for reconciliation and reporting.</p>
+        </div>
+        <div class="card">
+          <h3>Petrol Station Management System</h3>
+          <p>A school software design &amp; architecture project — full system design for fuel, stock and till
+            management before any code was written.</p>
+        </div>
+        <div class="card">
+          <h3>This Portfolio</h3>
+          <p>Hand-built HTML/CSS design system — the page you're looking at right now.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ TESTIMONIALS ============ -->
-  <section style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <!-- =========================================================================
+       TESTIMONIALS SECTION
+       ========================================================================= -->
+  <section
+    style="background:var(--paper-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
       <p class="eyebrow">// 05 feedback</p>
       <h2>What people I've worked with say</h2>
       <div class="grid">
         <div class="quote-card">
-          <p>"Rotondwa is creative, hardworking, and dedicated. His coding projects are impressive for his experience level."</p>
+          <p>"Rotondwa is creative, hardworking, and dedicated. His coding projects are impressive for his experience
+            level."</p>
           <cite>— Classmate / Mentor</cite>
         </div>
 
@@ -288,12 +437,15 @@
     </div>
   </section>
 
-  <!-- ============ CTA ============ -->
+  <!-- =========================================================================
+       CALL-TO-ACTION SECTION
+       ========================================================================= -->
   <section>
     <div class="container">
       <div class="cta-banner">
         <h2>Have a project in mind?</h2>
-        <p>Whether it's a Java application, a small business website, or a full portfolio build — let's talk about it.</p>
+        <p>Whether it's a Java application, a small business website, or a full portfolio build — let's talk about it.
+        </p>
         <div class="btn-row" style="justify-content:center;">
           <a href="contact.html" class="btn btn-primary">Get in touch</a>
         </div>
@@ -301,16 +453,58 @@
     </div>
   </section>
 
+  <!-- =========================================================================
+       FOOTER
+       Social media links and copyright notice.
+       ========================================================================= -->
   <footer>
     <div class="footer-social">
-      <a href="https://www.facebook.com/profile.php?id=61555500560279" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.9.2-1.5 1.6-1.5H16V4.2C15.7 4.1 14.7 4 13.5 4c-2.4 0-4 1.5-4 4.2V10.5H7v3h2.5V21h4z"/></svg></a>
-      <a href="https://www.instagram.com/given_machete?igsh=MWVqYjU5OXJqZTE5Yg==" target="_blank" rel="noopener" aria-label="Instagram" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="4"></rect><circle cx="12" cy="12" r="3.5"></circle><circle cx="17" cy="7" r="1"></circle></svg></a>
-      <a href="https://github.com/Bokang-macs" target="_blank" rel="noopener" aria-label="GitHub" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48 0-.24-.01-1.02-.01-1.86-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.32 9.32 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0022 12.26C22 6.58 17.52 2 12 2z"/></svg></a>
-      <a href="https://www.linkedin.com/in/given-machete-50b7632a9?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3.5a2 2 0 100 4 2 2 0 000-4zM21 21v-6.9c0-3.68-1.96-5.39-4.58-5.39-2.11 0-3.06 1.16-3.58 1.98v-1.7h-3.38c.04.9 0 12 0 12h3.38v-6.7c0-.36.03-.72.13-.98.29-.72.95-1.47 2.05-1.47 1.45 0 2.03 1.1 2.03 2.72V21H21z"/></svg></a>
+      <!-- Facebook icon link -->
+      <a href="https://www.facebook.com/profile.php?id=61555500560279" target="_blank" rel="noopener"
+        aria-label="Facebook" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.9.2-1.5 1.6-1.5H16V4.2C15.7 4.1 14.7 4 13.5 4c-2.4 0-4 1.5-4 4.2V10.5H7v3h2.5V21h4z" />
+        </svg></a>
+      <!-- Instagram icon link -->
+      <a href="https://www.instagram.com/given_machete?igsh=MWVqYjU5OXJqZTE5Yg==" target="_blank" rel="noopener"
+        aria-label="Instagram" class="footer-social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <circle cx="17" cy="7" r="1"></circle>
+        </svg></a>
+      <!-- GitHub icon link -->
+      <a href="https://github.com/Bokang-macs" target="_blank" rel="noopener" aria-label="GitHub"
+        class="footer-social-icon"><svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48 0-.24-.01-1.02-.01-1.86-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.32 9.32 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.02 10.02 0 0022 12.26C22 6.58 17.52 2 12 2z" />
+        </svg></a>
+      <!-- LinkedIn icon link -->
+      <a href="https://www.linkedin.com/in/given-machete-50b7632a9?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android"
+        target="_blank" rel="noopener" aria-label="LinkedIn" class="footer-social-icon"><svg viewBox="0 0 24 24"
+          fill="currentColor">
+          <path
+            d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3.5a2 2 0 100 4 2 2 0 000-4zM21 21v-6.9c0-3.68-1.96-5.39-4.58-5.39-2.11 0-3.06 1.16-3.58 1.98v-1.7h-3.38c.04.9 0 12 0 12h3.38v-6.7c0-.36.03-.72.13-.98.29-.72.95-1.47 2.05-1.47 1.45 0 2.03 1.1 2.03 2.72V21H21z" />
+        </svg></a>
     </div>
     <p>&copy; 2026 Rotondwa Given Machete | All Rights Reserved</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Link to external JavaScript file -->
+  <script src="js/script.js"></script>
+  <!-- =========================================================================
+       WHATSAPP FLOATING BUTTON
+       Fixed button that opens WhatsApp chat with pre-filled message.
+       Visible on all pages for easy contact.
+       ========================================================================== -->
+  <a href="https://wa.me/27762558846?text=Hi%20Rotondwa%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project%20with%20you."
+    class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
 </body>
+
 </html>

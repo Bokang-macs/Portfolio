@@ -1,0 +1,1460 @@
+/* =============================================================================
+   ROTONDWA MACHETE — DEVELOPER PORTFOLIO
+   Design system: "IDE / Terminal" identity.
+
+   WHY THIS LOOK: the visitor is deciding whether to hire a developer.
+   The strongest proof of skill is a site that LOOKS like it was built by
+   one — so the whole design borrows from a code editor: dark "IDE" hero,
+   section labels styled as real code comments, cards tagged like files.
+   This is not decoration for its own sake — every terminal/file element
+   below maps to something real about how you work.
+
+   HOW TO READ THIS FILE (Java/C++ analogies, since that's your base):
+   - :root { --var } is like `#define` / a `static final` constant block.
+     Define a value ONCE at the top, reuse it everywhere. Change it once,
+     it updates everywhere it's used — same reason you don't hardcode a
+     magic number in 10 different methods.
+   - @media (...) { } is an if-statement that runs at RENDER TIME, based
+     on screen width, not program logic. "if (screenWidth < 600) { ... }"
+   - .class { } is like defining a reusable object "type" — you stamp the
+     same class onto many HTML elements the way you'd instantiate the
+     same Java class many times with different data.
+   ============================================================================= */
+
+/* ==========================================================================
+   1. DESIGN TOKENS (the constants block)
+   Every color, spacing unit, and radius used anywhere in this file is
+   declared here ONCE. If you want to re-brand the whole site later,
+   this is the only section you should need to touch.
+   ========================================================================== */
+:root {
+  /* --- Core palette --- */
+  --ink: #0B1220;
+  /* near-black navy: header, hero, footer bg */
+  --ink-soft: #16213E;
+  /* lighter navy: cards INSIDE dark sections */
+  --paper: #F7F9FC;
+  /* main body background (light sections) */
+  --paper-card: #FFFFFF;
+  /* card background on the light sections */
+
+  --accent: #34D399;
+  /* terminal green — primary actions/links */
+  --accent-dark: #10B981;
+  /* darker green — hover state for accent */
+  --accent-amber: #FBBF24;
+  /* amber — secondary highlight / badges */
+
+  --text-body: #334155;
+  /* body copy on light background */
+  --text-muted: #5B6B85;
+  /* secondary/caption text */
+  --text-on-ink: #E2E8F0;
+  /* body copy on dark background */
+  --text-on-ink-muted: #8896B3;
+
+  --border: #E2E8F0;
+  /* hairline borders on light sections */
+  --border-ink: #26314F;
+  /* hairline borders on dark sections */
+
+  /* --- Shape & spacing --- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* --- Type scale ---
+     clamp(min, preferred, max) = fluid sizing: the browser picks a value
+     between min and max based on viewport width. This replaces having a
+     separate font-size rule inside every @media block — one line covers
+     phone through desktop. Think of it like a formula instead of a
+     lookup table of hardcoded cases. */
+  --fs-hero: clamp(1.9rem, 1.2rem + 3.2vw, 3.4rem);
+  --fs-h2: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
+  --fs-h3: clamp(1.1rem, 0.95rem + 0.6vw, 1.3rem);
+  --fs-body: clamp(0.98rem, 0.94rem + 0.15vw, 1.05rem);
+}
+
+/* ==========================================================================
+   2. RESET
+   Browsers ship with inconsistent default spacing/sizing on elements.
+   This zeroes that out so YOUR rules are the only source of truth —
+   comparable to why you'd initialise a variable explicitly in Java
+   instead of trusting an implicit default.
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* width/height include padding+border, not just content */
+}
+
+html {
+  scroll-behavior: smooth;
+  /* smooth-scrolls to #anchors instead of jump-cutting */
+  -webkit-text-size-adjust: 100%;
+  /* stops iOS auto-inflating text size */
+}
+
+body {
+  background: var(--paper);
+  color: var(--text-body);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  /* safety net: nothing should ever force sideways page scroll */
+}
+
+img {
+  max-width: 100%;
+  /* an image can NEVER be wider than its container */
+  height: auto;
+  /* keeps aspect ratio when width is constrained */
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Respect users who've told their OS "reduce motion" (accessibility
+   setting) — same idea as checking a feature flag before running an
+   animation branch. We disable the typing/scroll animations for them. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY UTILITIES
+   ========================================================================== */
+h1,
+h2,
+h3,
+.mono {
+  font-family: 'Space Mono', 'Courier New', monospace;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* The "code comment" eyebrow label used above every section heading.
+   Real comments in your code look like `// something` — reusing that
+   exact visual grammar here is the site's signature device: it's not a
+   decorative icon, it's literally how you annotate things as a coder. */
+.eyebrow {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent-dark);
+  background: rgba(52, 211, 153, 0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.section-intro {
+  max-width: 640px;
+  color: var(--text-muted);
+  margin-bottom: 2.4rem;
+}
+
+/* ==========================================================================
+   4. LAYOUT PRIMITIVES
+   ========================================================================== */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  /* shorthand for margin-left + margin-right: auto → centers block */
+  padding-inline: 6%;
+}
+
+section {
+  padding: 5rem 0;
+}
+
+.section-dark {
+  background: var(--ink);
+  color: var(--text-on-ink);
+}
+
+/* ==========================================================================
+   5. HEADER / NAVIGATION
+   ========================================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--ink);
+  border-bottom: 1px solid var(--border-ink);
+  /* Animation: header slides down on page load */
+  animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header-inner {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: 1.1rem 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-on-ink);
+  white-space: nowrap;
+  /* Animation: logo fades in with slight scale */
+  animation: logoFadeIn 0.8s ease-out 0.2s both;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.nav a {
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-on-ink-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.2s;
+  /* Animation: nav links fade in with stagger */
+  animation: navFadeIn 0.5s ease-out both;
+}
+
+.nav a:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.nav a:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.nav a:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.nav a:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.nav a:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--ink);
+  background: var(--accent);
+}
+
+/* Hamburger button — hidden by default, only shown under 900px.
+   It's a plain button styled as three bars ("span" x 3 in the HTML). */
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-ink);
+  background: transparent;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.menu-toggle span {
+  width: 18px;
+  height: 2px;
+  background: var(--text-on-ink);
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(280px, 82vw);
+    height: 100vh;
+    background: var(--ink);
+    flex-direction: column;
+    padding: 6.5rem 1.6rem 2rem;
+    border-left: 1px solid var(--border-ink);
+    transition: right 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+    width: 100%;
+    padding: 0.9rem 1rem;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+/* ==========================================================================
+   6. BUTTONS
+   Two variants: solid (primary action) and outline (secondary action).
+   Written once, reused everywhere — the whole point of a class system.
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+  box-shadow: 0 10px 24px rgba(52, 211, 153, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border-ink);
+  color: var(--text-on-ink);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+/* ==========================================================================
+   7. HERO — the terminal window
+   Markup shape (see index.html):
+   .terminal > .terminal-bar (3 dots + filename) + .terminal-body (lines)
+   This is the single "signature" visual of the whole site.
+   ========================================================================== */
+
+.hero {
+  padding-top: 4.5rem;
+  padding-bottom: 5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  /* Animation: eyebrow text fades in */
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  /* Animation: headline fades in with delay */
+  animation: fadeInUp 0.7s ease-out 0.5s both;
+}
+
+.hero h1 span {
+  color: var(--accent);
+}
+
+.hero p {
+  color: var(--text-on-ink-muted);
+  max-width: 46ch;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  /* Animation: description fades in */
+  animation: fadeInUp 0.7s ease-out 0.7s both;
+}
+
+.hero .btn-row {
+  /* Animation: buttons fade in */
+  animation: fadeInUp 0.7s ease-out 0.9s both;
+}
+
+/* The terminal "window chrome" — the little colored dots that make any
+   box read instantly as "a computer terminal" to anyone who's seen one. */
+.terminal {
+  background: var(--ink-soft);
+  border: 1px solid var(--border-ink);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  /* Animation: terminal slides in from right with slight rotation */
+  animation: terminalSlideIn 0.9s ease-out 0.4s both;
+}
+
+@keyframes terminalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px) rotateY(-5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(0);
+  }
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-ink);
+}
+
+.terminal-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.terminal-dot.red {
+  background: #FF5F56;
+}
+
+.terminal-dot.yellow {
+  background: #FFBD2E;
+}
+
+.terminal-dot.green {
+  background: #27C93F;
+}
+
+.terminal-filename {
+  margin-left: 0.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-on-ink-muted);
+}
+
+.terminal-body {
+  padding: 1.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.92rem;
+  line-height: 1.9;
+  min-height: 220px;
+}
+
+.terminal-body .prompt {
+  color: var(--accent-amber);
+}
+
+.terminal-body .output {
+  color: var(--text-on-ink);
+}
+
+.terminal-body .comment {
+  color: var(--text-on-ink-muted);
+}
+
+/* Each terminal line starts invisible; script.js flips opacity to 1 one
+   line at a time. The transition below is what makes that flip a fade-in
+   instead of an instant snap — CSS handles the "how it animates" part,
+   JS only handles the "when" part. Clean separation of concerns. */
+.terminal-body .line {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.terminal-body .line:first-child {
+  opacity: 1;
+}
+
+/* Blinking cursor — a tiny CSS animation, no JS required. This is the
+   "leverage motion deliberately" moment: ONE small, purposeful animation
+   that mimics a real terminal, instead of decorations everywhere. */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   8. FILE-TAG BADGES
+   Small pill labels styled like file extensions (.java / .cpp / .html),
+   used on skill cards and project cards so a client can scan your stack
+   in one second, and it echoes the "developer" identity again.
+   ========================================================================== */
+.tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.tag-java {
+  color: #B45309;
+  background: #FEF3C7;
+  border-color: #FDE68A;
+}
+
+.tag-cpp {
+  color: #1D4ED8;
+  background: #DBEAFE;
+  border-color: #BFDBFE;
+}
+
+.tag-web {
+  color: #047857;
+  background: #D1FAE5;
+  border-color: #A7F3D0;
+}
+
+.tag-media {
+  color: #7C3AED;
+  background: #EDE9FE;
+  border-color: #DDD6FE;
+}
+
+.tag-python {
+  color: #A16207;
+  background: #FEF9C3;
+  border-color: #FEF08A;
+}
+
+.tag-js {
+  color: #C2410C;
+  background: #FFEDD5;
+  border-color: #FED7AA;
+}
+
+.tag-sql {
+  color: #0E7490;
+  background: #CFFAFE;
+  border-color: #A5F3FC;
+}
+
+.tag-design {
+  color: #BE185D;
+  background: #FCE7F3;
+  border-color: #FBCFE8;
+}
+
+.tag-cs {
+  color: #7C3AED;
+  background: #EDE9FE;
+  border-color: #DDD6FE;
+}
+
+/* ==========================================================================
+   9. CARD GRIDS (skills / services / projects)
+   `auto-fit` + `minmax()` is a SELF-ADJUSTING grid: the browser fits as
+   many columns as will comfortably hold `minmax()`'s minimum width, and
+   stretches them evenly. This one rule replaces writing a separate
+   "1 column on phone / 2 on tablet / 3 on desktop" rule for every
+   breakpoint — closer to a formula than a hardcoded switch-statement.
+   ========================================================================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem;
+}
+
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  /* Animation: cards fade in on scroll */
+  animation: cardFadeIn 0.6s ease-out both;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger card animations within each grid */
+.grid .card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.grid .card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.grid .card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.grid .card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.grid .card:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.grid .card:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+.grid .card:nth-child(7) {
+  animation-delay: 0.35s;
+}
+
+.grid .card:nth-child(8) {
+  animation-delay: 0.4s;
+}
+
+.grid .card:nth-child(9) {
+  animation-delay: 0.45s;
+}
+
+.grid .card:nth-child(10) {
+  animation-delay: 0.5s;
+}
+
+.grid .card:nth-child(11) {
+  animation-delay: 0.55s;
+}
+
+.grid .card:nth-child(12) {
+  animation-delay: 0.6s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+}
+
+/* Skill progress bar — a thin track + filled bar, width set inline via
+   `style="width: 90%"` in the HTML (same idea as passing a variable into
+   a constructor: the CSS defines the shape, the HTML supplies the value). */
+.bar-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--border);
+  margin-top: 0.9rem;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  /* Animation: progress bar fills from left on load */
+  animation: barFill 1.2s ease-out 0.8s both;
+  transform-origin: left;
+}
+
+@keyframes barFill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ==========================================================================
+   10. PROJECT FILTERS
+   Buttons toggle a `data-filter` attribute; script.js reads it and
+   shows/hides `.project-card` elements whose `data-category` matches.
+   Pure CSS can't read JS-driven state changes like this, so this part
+   is finished off in script.js — see the comments there.
+   ========================================================================== */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.2rem;
+}
+
+.filter-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--paper-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.filter-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--accent);
+}
+
+.project-card.is-hidden {
+  display: none;
+}
+
+/* ==========================================================================
+   11. TIMELINE (about.html education history)
+   A vertical line + dots is only justified here because education really
+   IS a sequence in time — unlike numbering things that aren't ordered.
+   ========================================================================== */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.8rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.4rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.timeline-item h3 {
+  margin-bottom: 0.2rem;
+}
+
+.timeline-item span {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ==========================================================================
+   12. PRICING CARDS (replaces the old raw <table>)
+   WHY A TABLE WAS THE WRONG ELEMENT: a <table> is for data you compare
+   ACROSS rows and columns at once (like a spreadsheet). A service list
+   is really just "N independent items, each with the same shape" — a
+   grid of cards. Cards also solve the mobile problem outright: a table
+   forces horizontal scrolling on a phone, cards just restack to one
+   column. Fixing the RIGHT element beats patching the wrong one.
+   ========================================================================== */
+.price-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  /* Animation: price cards fade in with stagger */
+  animation: cardFadeIn 0.6s ease-out both;
+}
+
+.price-card .time {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent-dark);
+  background: rgba(52, 211, 153, 0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   13. TESTIMONIALS
+   ========================================================================== */
+.quote-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  /* Animation: quote cards slide in from left */
+  animation: slideInLeft 0.7s ease-out both;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Stagger quote card animations */
+.grid .quote-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.grid .quote-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.grid .quote-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.grid .quote-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.quote-card p {
+  color: var(--text-body);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.quote-card cite {
+  font-family: 'Space Mono', monospace;
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   14. CONTACT CARD (replaces the old raw <table>)
+   A definition list of key → value pairs, styled like the output of
+   running `cat contact.txt` in a terminal. Same reasoning as the pricing
+   cards: this data isn't tabular (no rows being compared against each
+   other), it's one record — a list is the honest structure for it, and
+   it can never overflow a phone screen the way a <table> can.
+   ========================================================================== */
+.contact-card {
+  background: var(--ink-soft);
+  border: 1px solid var(--border-ink);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  font-family: 'Space Mono', monospace;
+  /* Animation: contact card fades in with scale */
+  animation: contactCardIn 0.7s ease-out 0.3s both;
+}
+
+@keyframes contactCardIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border-ink);
+  /* Animation: each row slides in with stagger */
+  animation: contactRowIn 0.5s ease-out both;
+}
+
+@keyframes contactRowIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.contact-row:nth-child(1) {
+  animation-delay: 0.4s;
+}
+
+.contact-row:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.contact-row:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.contact-row:nth-child(4) {
+  animation-delay: 0.7s;
+}
+
+.contact-row:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.contact-row:last-child {
+  border-bottom: none;
+}
+
+.contact-key {
+  color: var(--text-on-ink-muted);
+  min-width: 110px;
+}
+
+.contact-val {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.contact-val a:hover {
+  text-decoration: underline;
+}
+
+.social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.2s;
+  /* Animation: social pills pop in */
+  animation: socialPopIn 0.5s ease-out both;
+}
+
+@keyframes socialPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.social-pill:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.social-pill:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.social-pill:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.social-pill:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.social-pill svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.social-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+  background: rgba(52, 211, 153, 0.08);
+}
+
+/* ==========================================================================
+   15. CTA BANNER
+   ========================================================================== */
+.cta-banner {
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 3.2rem 2.5rem;
+  text-align: center;
+  margin-top: 4rem;
+  /* Animation: CTA banner scales in */
+  animation: ctaBannerIn 0.8s ease-out both;
+}
+
+@keyframes ctaBannerIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.cta-banner h2 {
+  color: var(--text-on-ink);
+}
+
+.cta-banner p {
+  color: var(--text-on-ink-muted);
+  max-width: 50ch;
+  margin: 0.8rem auto 1.8rem;
+}
+
+/* ==========================================================================
+   16. FOOTER
+   ========================================================================== */
+footer {
+  background: var(--ink);
+  color: var(--text-on-ink-muted);
+  text-align: center;
+  padding: 2.6rem 6%;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-ink);
+}
+
+/* ==========================================================================
+   16b. FOOTER SOCIAL ICONS
+   Small circular icon links, sitting above the copyright line on every
+   page — matches the .social-pill treatment used on Contact, just
+   compressed to icon-only since footer real estate is tight.
+   ========================================================================== */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-ink);
+  color: var(--text-on-ink-muted);
+  transition: 0.2s;
+}
+
+.footer-social-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.footer-social-icon:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   17. RESPONSIVE BREAKPOINTS
+   Two stops: tablet (900px) and phone (600px). Everything ABOVE this
+   block already flexes on its own thanks to clamp()/grid/auto-fit — this
+   section only overrides the handful of things that genuinely need a
+   hard rule change (stacking the hero, tightening spacing).
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 3.6rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-inline: 5.5%;
+  }
+
+  section {
+    padding: 2.8rem 0;
+  }
+
+  .terminal-body {
+    font-size: 0.82rem;
+    padding: 1.2rem;
+  }
+
+  .cta-banner {
+    padding: 2.2rem 1.4rem;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================================================
+   18. SCROLL REVEAL ANIMATION
+   Elements with .reveal class fade in when they enter the viewport.
+   This is applied via JavaScript IntersectionObserver.
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   19. CARD LINK STYLING
+   For project cards that link to external sites.
+   ========================================================================== */
+.card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  transition: color 0.2s;
+}
+
+.card-link:hover {
+  color: var(--accent-dark);
+}
+
+/* ==========================================================================
+   20. SECTION DARK ALTERNATE PADDING
+   Used on inner page headers for consistent spacing.
+   ========================================================================== */
+.section-dark h1 {
+  color: var(--text-on-ink);
+}
+
+
+/* ==========================================================================
+   21. WHATSAPP FLOATING BUTTON
+   Fixed position button that stays visible as user scrolls.
+   Green WhatsApp brand color with pulse animation for attention.
+   ========================================================================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  /* WhatsApp brand green */
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+}
+
+/* Pulse ring animation around WhatsApp button */
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #25D366;
+  animation: whatsappPulse 2s ease-out infinite;
+  z-index: -1;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* WhatsApp pill button variant (for contact page) */
+.whatsapp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 99px;
+  padding: 0.7rem 1.4rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: 'Manrope', sans-serif;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+.whatsapp-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-pill svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+  flex-shrink: 0;
+}
+
+/* WhatsApp contact row in terminal card */
+.contact-val-whatsapp {
+  color: #25D366;
+  font-weight: 700;
+}
+
+.contact-val-whatsapp a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   22. HERO PROFILE IMAGE
+   Profile image displayed in the hero section.
+   ========================================================================== */
+.hero-profile-img {
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.3);
+  animation: profileImgIn 0.8s ease-out 0.3s both;
+}
+
+@keyframes profileImgIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Mobile: smaller profile image */
+@media (max-width: 600px) {
+  .hero-profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius-md);
+  }
+
+  .whatsapp-float {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .whatsapp-float svg {
+    width: 24px;
+    height: 24px;
+  }
+}

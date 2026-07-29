@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML Sitemap for Search Engine Optimization (SEO)
+  This file helps search engines (like Google and Bing) discover and crawl key pages on the website.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home Page: Highest priority since it is the main landing page -->
+  <url>
+    <loc>https://yourdomain.com/index.html</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- About Page: Introduces developer bio, background, and education -->
+  <url>
+    <loc>https://yourdomain.com/about.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Services Page: Details offered software and web development services -->
+  <url>
+    <loc>https://yourdomain.com/services.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Projects Page: Showcases portfolio items, repository, and tech stack -->
+  <url>
+    <loc>https://yourdomain.com/projects.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Contact Page: Provides direct contact details and social links -->
+  <url>
+    <loc>https://yourdomain.com/contact.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>
