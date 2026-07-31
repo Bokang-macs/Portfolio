@@ -2,9 +2,9 @@
   FILE: projects.html
   PAGE: Projects Page
   DESCRIPTION: Complete portfolio of projects with filter buttons to sort
-               by technology category (Java, C++, Python, JavaScript, SQL,
-               Software Design, Web, Multimedia). Each project card shows
-               the project name, category tag, and description.
+                by technology category (Java, C++, Python, JavaScript, SQL,
+                Software Design, Web, Multimedia). Each project card shows
+                the project name, category tag, and description.
   ============================================================================= -->
 <!DOCTYPE html>
 <html lang="en">
@@ -71,6 +71,7 @@
         <button class="filter-btn" data-filter="design">Software Design</button>
         <button class="filter-btn" data-filter="web">Web</button>
         <button class="filter-btn" data-filter="media">Multimedia</button>
+        <button class="filter-btn" data-filter="network">Networking</button>
       </div>
 
       <div class="grid">
@@ -100,6 +101,11 @@
           <div class="card-head"><h3>Guess Game</h3><span class="tag tag-java">.java</span></div>
           <p>Interactive number guessing game with score tracking.</p>
         </div>
+
+         <!--==========================================================================-->
+        <!--                    DO NOT REMOVE PLEASE                                  -->
+        <!--==========================================================================-->
+
         <div class="card project-card" data-category="java">
           <div class="card-head"><h3>More Java Builds</h3><span class="tag tag-java">.java</span></div>
           <p>Additional CLI and desktop utility implementations built with Object-Oriented principles.</p>
@@ -122,6 +128,11 @@
           <div class="card-head"><h3>BMI Calculator</h3><span class="tag tag-cpp">.cpp</span></div>
           <p>Console utility to compute body mass index metrics.</p>
         </div>
+
+         <!--==========================================================================-->
+        <!--                    DO NOT REMOVE PLEASE                                  -->
+        <!--==========================================================================-->
+
         <div class="card project-card" data-category="cpp">
           <div class="card-head"><h3>More C++ Builds</h3><span class="tag tag-cpp">.cpp</span></div>
           <p>Additional console applications focused on memory management and structured logic.</p>
@@ -133,13 +144,26 @@
           <p>Desktop GUI task manager with persistent JSON storage and keyboard shortcuts.</p>
         </div>
         <div class="card project-card" data-category="python">
-          <div class="card-head"><h3>Contact Search</h3><span class="tag tag-python">.py</span></div>
-          <p>Stores and searches contacts by name or number — built around dictionaries and simple file storage.</p>
-        </div>
-        <div class="card project-card" data-category="python">
           <div class="card-head"><h3>Calculator (Python)</h3><span class="tag tag-python">.py</span></div>
           <p>Console calculator handling core arithmetic with robust input validation.</p>
         </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Fuel Calculator</h3><span class="tag tag-python">.py</span></div>
+          <p>Python script for calculating distance, fuel usage, trip costs, and overall fuel efficiency metrics.</p>
+        </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Grade Classifier</h3><span class="tag tag-python">.py</span></div>
+          <p>Evaluates academic marks and score inputs to classify letter grades and performance standings.</p>
+        </div>
+        <div class="card project-card" data-category="python">
+          <div class="card-head"><h3>Contact Book</h3><span class="tag tag-python">.py</span></div>
+          <p>Command-line tool to add, view, update, and manage contact entries with file-backed persistence.</p>
+        </div>
+
+        <!--==========================================================================-->
+        <!--                    DO NOT REMOVE PLEASE                                  -->
+        <!--==========================================================================-->
+
         <div class="card project-card" data-category="python">
           <div class="card-head"><h3>More Python Scripts</h3><span class="tag tag-python">.py</span></div>
           <p>Automation scripts, data manipulation utilities, and algorithmic tasks.</p>
@@ -154,6 +178,11 @@
           <div class="card-head"><h3>Calculator (JavaScript)</h3><span class="tag tag-js">.js</span></div>
           <p>Browser-based calculator built with vanilla JS and DOM manipulation.</p>
         </div>
+
+         <!--==========================================================================-->
+        <!--                    DO NOT REMOVE PLEASE                                  -->
+        <!--==========================================================================-->
+
         <div class="card project-card" data-category="js">
           <div class="card-head"><h3>More JS Widgets</h3><span class="tag tag-js">.js</span></div>
           <p>Interactive web components and DOM manipulation tools.</p>
@@ -168,6 +197,10 @@
           <div class="card-head"><h3>Payment Management System</h3><span class="tag tag-sql">.sql</span></div>
           <p>Logs transactions against accounts/invoices, built for reconciliation and financial queries.</p>
         </div>
+
+        <!--==========================================================================-->
+        <!--                    DO NOT REMOVE PLEASE                                  -->
+        <!--==========================================================================-->
         <div class="card project-card" data-category="sql">
           <div class="card-head"><h3>More Database Schemas</h3><span class="tag tag-sql">.sql</span></div>
           <p>Normalized database designs (up to 3NF) and administrative SQL scripts.</p>
@@ -178,6 +211,10 @@
           <div class="card-head"><h3>Petrol Station System</h3><span class="tag tag-design">.design</span></div>
           <p>Full software architecture suite — UML, data flow diagrams (DFD), and requirements documentation for fuel, stock, and till management.</p>
         </div>
+
+         <!--==========================================================================-->
+        <!--                    DO NOT REMOVE PLEASE                                  -->
+        <!--==========================================================================-->
         <div class="card project-card" data-category="design">
           <div class="card-head"><h3>More Design Specs</h3><span class="tag tag-design">.design</span></div>
           <p>System architecture diagrams, context boundary maps, and database ERDs.</p>
@@ -205,6 +242,15 @@
           <p>Informational web platform showcasing characters and movie timelines.</p>
         </div>
 
+        <!--==========================================================================-->
+        <!--                    DO NOT REMOVE PLEASE                                  -->
+        <!--==========================================================================-->
+
+        <div class="card project-card" data-category="web">
+       <div class="card-head"><h3>More Web Projects</h3><span class="tag tag-web">.web</span></div>
+       <p>Additional custom responsive websites, landing pages, and front-end web interface prototypes.</p>
+      </div>
+
         <!-- ==================== MULTIMEDIA PROJECTS ==================== -->
         <div class="card project-card" data-category="media">
           <div class="card-head"><h3>Video Editing</h3><span class="tag tag-media">.mp4</span></div>
@@ -213,6 +259,11 @@
         <div class="card project-card" data-category="media">
           <div class="card-head"><h3>Audio Production</h3><span class="tag tag-media">.wav</span></div>
           <p>Created and engineered audio assets for multimedia applications.</p>
+        </div>
+
+        <div class="card project-card" data-category="network">
+          <div class="card-head"><h3>Coming Soon</h3><span class="tag tag-network">.net</span></div>
+          <p>Upcoming network engineering and socket programming build currently in development.</p>
         </div>
 
       </div>

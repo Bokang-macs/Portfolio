@@ -79,7 +79,7 @@
    2. RESET
    Browsers ship with inconsistent default spacing/sizing on elements.
    This zeroes that out so YOUR rules are the only source of truth —
-   comparable to why you'd initialise a variable explicitly in Java
+   comparable to why you'd initialize a variable explicitly in Java
    instead of trusting an implicit default.
    ========================================================================== */
 * {
@@ -683,6 +683,12 @@ header {
   background: #EDE9FE;
   border-color: #DDD6FE;
 }
+.tag-network {
+  color: #0284c7;
+  background: #e0f2fe;
+  border-color: #bae6fd;
+}
+
 
 /* ==========================================================================
    9. CARD GRIDS (skills / services / projects)
